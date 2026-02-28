@@ -4,7 +4,7 @@
 site_name: Airflow Docs (RU)
 site_description: Русский перевод документации Apache Airflow и Astronomer Learn
 site_author: airflow-docs
-site_url: https://airflow-docs.github.io/
+site_url: https://ivanshamaev.github.io/airflow-docs/
 
 # Исходные документы (симлинки на корневые папки)
 docs_dir: docs
