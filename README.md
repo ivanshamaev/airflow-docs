@@ -3,7 +3,7 @@
 Русский перевод документации **Apache Airflow®** в формате Markdown. Структура ориентирована на разделы сайта [Astronomer.io Docs](https://www.astronomer.io/docs/learn/). Для личного использования и размещения на GitHub.
 
 
-Подписывайтесь на телеграм канал [@data_engineer_path](t.me/data_engineer_path)
+Подписывайтесь на телеграм канал [@data_engineer_path](https://t.me/data_engineer_path)
 
 
 ## Структура документов
