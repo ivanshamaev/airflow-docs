@@ -1,6 +1,6 @@
 # Airflow для MLOps
 
-**MLOps** охватывает всё необходимое для эксплуатации ML-моделей в продакшене. Airflow — инструмент-агностик оркестрации: он может управлять шагами в любом MLOps-инструменте с API. Плюсы: использование существующей экспертизы по Airflow, общая платформа для data/ML инженеров, [интеграции](https://registry.astronomer.io/providers), retries и branching, идемпотентные пайплайны и backfill, выбор compute под задачу (GPU, Spark), мониторинг и алерты, [кастомные модули](../astronomer-dags/custom-hooks-operators.md) и [плагины](airflow-plugins.md).
+**MLOps** охватывает всё необходимое для эксплуатации ML-моделей в продакшене. Airflow — инструмент-агностик оркестрации: он может управлять шагами в любом MLOps-инструменте с API. Плюсы: использование существующей экспертизы по Airflow, общая платформа для data/ML инженеров, [интеграции](https://registry.astronomer.io/providers), retries и branching, идемпотентные пайплайны и backfill, выбор compute под задачу (GPU, Spark), мониторинг и алерты, [кастомные модули](../02. astronomer-dags/custom-hooks-operators.md) и [плагины](airflow-plugins.md).
 
 **LLMOps** (Large Language Model Operations): fine-tuning, RAG, prompt engineering. Airflow подходит для оркестрации пайплайнов инференса и GenAI.
 

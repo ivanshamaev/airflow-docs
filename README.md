@@ -57,6 +57,25 @@
 - Темы: Airflow Object Storage, документирование DAG, DAG Factory (YAML), разработка в PyCharm, SQL check operators (data quality), разработка в VS Code.
 
 
+## Документация как сайт (GitHub Pages)
+
+Репозиторий настроен на сборку и публикацию сайта документации с **боковым меню** и контентом справа.
+
+- **Стек:** [MkDocs](https://www.mkdocs.org/) + тема [Material](https://squidfunk.github.io/mkdocs-material/).
+- **Деплой:** при пуше в `main`/`master` GitHub Actions собирает сайт и публикует его на GitHub Pages.
+- **Адрес сайта:** `https://<владелец-репо>.github.io/airflow-docs/` (после первого деплоя включите в настройках репозитория: **Settings → Pages → Source: GitHub Actions**).
+
+Локальный просмотр и правки:
+
+```bash
+pip install mkdocs-material
+mkdocs serve
+```
+
+Откройте в браузере http://127.0.0.1:8000 — слева меню, справа содержание страницы.
+
+Чтобы сайт открывался по адресу **airflow-docs.github.io**, создайте организацию `airflow-docs` и репозиторий `airflow-docs.github.io`, затем перенесите туда контент и workflow (и при необходимости задайте `site_url` в `mkdocs.yml`).
+
 ## Использование
 
 - Читать в любом Markdown-редакторе или на GitHub (навигация по ссылкам между файлами).

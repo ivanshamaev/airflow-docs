@@ -147,4 +147,4 @@ with DAG("my_continuous_dag", schedule="@continuous"):
 
 ---
 
-[← Задачи](tasks.md) | [К основным концепциям](README.md) | [К содержанию](../README.md)
+[← Задачи](tasks.md) | [К основным концепциям](README.md) | [К содержанию](../toc.md)

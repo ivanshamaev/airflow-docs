@@ -26,4 +26,4 @@
 
 ---
 
-[← К содержанию](README.md) | [DAG →](../astronomer-basic/dags.md) | [Отладка →](debugging-dags.md)
+[← К содержанию](README.md) | [DAG →](../01. astronomer-basic/dags.md) | [Отладка →](debugging-dags.md)

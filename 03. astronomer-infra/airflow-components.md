@@ -8,7 +8,7 @@
 
 - **Triggerer** — отдельный процесс для асинхронных Python-функций (trigger classes). Нужен для [deferrable-операторов](https://www.astronomer.io/docs/learn/deferrable-operators) и [event-driven scheduling](https://www.astronomer.io/docs/learn/airflow-event-driven-scheduling).
 - **Метаданные (metadata database)** — хранит подключения, сериализованные DAG, XCom, историю DAG run и task instance. Чаще всего используется PostgreSQL. См. [supported versions](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html).
-- **DAG processor** — забирает и парсит файлы из [DAG bundle(s)](../astronomer-dags/dag-versioning.md) (см. [Версионирование DAG](../astronomer-dags/dag-versioning.md)).
+- **DAG processor** — забирает и парсит файлы из [DAG bundle(s)](../02. astronomer-dags/dag-versioning.md) (см. [Версионирование DAG](../02. astronomer-dags/dag-versioning.md)).
 - **API server** — FastAPI-сервер: UI Airflow и три API: для воркеров (выполнение задач), внутренний для UI (состояния задач и DAG run), [публичный REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html).
 - **Scheduler** — ядро Airflow: следит за задачами и DAG, планирует task instance по мере выполнения зависимостей. При создании DAG run выбирает последнюю [версию DAG](https://www.astronomer.io/docs/learn/airflow-dag-versioning). Для запуска задачи использует настроенный [executor](executors.md).
 

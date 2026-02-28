@@ -88,4 +88,4 @@ Airflow® рассчитан на **конечные пакетные** проц
 
 ---
 
-[← Назад к содержанию](README.md) | [DAG →](core-concepts/dags.md) | [Задачи →](core-concepts/tasks.md)
+[← Назад к содержанию](toc.md) | [DAG →](core-concepts/dags.md) | [Задачи →](core-concepts/tasks.md)

@@ -27,7 +27,7 @@
 
 При интерпретаторе из Docker в панели **Services** (⌘+8 / Ctrl+8) отображаются контейнеры: scheduler, triggerer, webserver, postgres. Запуск — зелёная кнопка; логи — по клику на контейнер. Для выполнения CLI-команд: правый клик по scheduler → Create Terminal → bash в контейнер.
 
-Подробнее: [PyCharm local development](https://www.astronomer.io/docs/learn/pycharm-local-dev), [Debug with dag.test()](../astronomer-advanced/testing-airflow.md).
+Подробнее: [PyCharm local development](https://www.astronomer.io/docs/learn/pycharm-local-dev), [Debug with dag.test()](../04. astronomer-advanced/testing-airflow.md).
 
 ---
 

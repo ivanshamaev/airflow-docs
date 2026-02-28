@@ -26,4 +26,4 @@
 
 ---
 
-[← К содержанию](README.md) | [Хуки →](../astronomer-basic/hooks.md) | [Операторы →](../astronomer-basic/operators.md)
+[← К содержанию](README.md) | [Хуки →](../01. astronomer-basic/hooks.md) | [Операторы →](../01. astronomer-basic/operators.md)

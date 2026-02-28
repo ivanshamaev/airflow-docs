@@ -17,4 +17,4 @@
 
 ---
 
-[← К содержанию](README.md) | [Контекст →](airflow-context.md) | [Trigger rules →](../astronomer-basic/trigger-rules.md)
+[← К содержанию](README.md) | [Контекст →](airflow-context.md) | [Trigger rules →](../01. astronomer-basic/trigger-rules.md)

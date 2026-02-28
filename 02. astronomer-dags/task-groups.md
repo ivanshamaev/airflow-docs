@@ -98,4 +98,4 @@ XCom из маппленной группы: в xcom_pull указывать `ta
 
 ---
 
-[← К содержанию](README.md) | [Dynamic tasks →](dynamic-tasks.md) | [Зависимости →](../astronomer-basic/task-dependencies.md)
+[← К содержанию](README.md) | [Dynamic tasks →](dynamic-tasks.md) | [Зависимости →](../01. astronomer-basic/task-dependencies.md)

@@ -1,0 +1,132 @@
+# MkDocs + Material — конфигурация сайта документации Airflow (рус.)
+# Деплой: GitHub Actions публикует сайт на GitHub Pages
+
+site_name: Airflow Docs (RU)
+site_description: Русский перевод документации Apache Airflow и Astronomer Learn
+site_author: airflow-docs
+site_url: https://airflow-docs.github.io/
+
+# Исходные документы (симлинки на корневые папки)
+docs_dir: docs
+
+# Тема Material: боковое меню, поиск, тёмная тема
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Тёмная тема
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Светлая тема
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+# Репозиторий для ссылки «Edit» (замените на свой)
+repo_url: https://github.com/ivanshamaev/airflow-docs
+edit_uri: edit/main/
+repo_name: ivanshamaev/airflow-docs
+
+plugins:
+  - search
+
+# Навигация: слева меню, справа контент
+nav:
+  - Главная: README.md
+
+  - Apache Airflow:
+    - Оглавление: apache/airflow/toc.md
+    - Что такое Airflow: apache/airflow/index.md
+    - Основные концепции:
+      - Обзор: apache/airflow/core-concepts/README.md
+      - DAG: apache/airflow/core-concepts/dags.md
+      - Задачи (Tasks): apache/airflow/core-concepts/tasks.md
+    - Быстрый старт: apache/airflow/quick-start.md
+
+  - "01. Basics (Astronomer)":
+    - Оглавление: "01. astronomer-basic/README.md"
+    - Интерфейс Airflow (UI): "01. astronomer-basic/airflow-ui.md"
+    - Ассеты и data-aware: "01. astronomer-basic/assets.md"
+    - BashOperator: "01. astronomer-basic/bashoperator.md"
+    - Подключения (Connections): "01. astronomer-basic/connections.md"
+    - DAG: "01. astronomer-basic/dags.md"
+    - Выполнение SQL: "01. astronomer-basic/execute-sql.md"
+    - Хуки (Hooks): "01. astronomer-basic/hooks.md"
+    - Управление кодом: "01. astronomer-basic/managing-airflow-code.md"
+    - Операторы: "01. astronomer-basic/operators.md"
+    - Планирование: "01. astronomer-basic/scheduling.md"
+    - Сенсоры: "01. astronomer-basic/sensors.md"
+    - Зависимости задач: "01. astronomer-basic/task-dependencies.md"
+    - Trigger rules: "01. astronomer-basic/trigger-rules.md"
+    - Переменные: "01. astronomer-basic/variables.md"
+
+  - "02. DAGs (Astronomer)":
+    - Оглавление: "02. astronomer-dags/README.md"
+    - Контекст Airflow: "02. astronomer-dags/airflow-context.md"
+    - Декораторы: "02. astronomer-dags/airflow-decorators.md"
+    - Уведомления об ошибках: "02. astronomer-dags/airflow-notifications.md"
+    - Params: "02. astronomer-dags/airflow-params.md"
+    - BranchOperator: "02. astronomer-dags/branch-operator.md"
+    - Cross-DAG зависимости: "02. astronomer-dags/cross-dag-dependencies.md"
+    - Кастомные хуки и операторы: "02. astronomer-dags/custom-hooks-operators.md"
+    - Лучшие практики DAG: "02. astronomer-dags/dag-best-practices.md"
+    - Параметры DAG: "02. astronomer-dags/dag-parameters.md"
+    - Версионирование DAG: "02. astronomer-dags/dag-versioning.md"
+    - Отладка DAG: "02. astronomer-dags/debugging-dags.md"
+    - Динамические задачи: "02. astronomer-dags/dynamic-tasks.md"
+    - Jinja-шаблонирование: "02. astronomer-dags/jinja-templating.md"
+    - Передача данных (XCom): "02. astronomer-dags/passing-data-between-tasks.md"
+    - Повторный запуск (Rerunning): "02. astronomer-dags/rerunning-dags.md"
+    - Группы задач: "02. astronomer-dags/task-groups.md"
+
+  - "03. Инфраструктура (Astronomer)":
+    - Оглавление: "03. astronomer-infra/README.md"
+    - Компоненты Airflow: "03. astronomer-infra/airflow-components.md"
+    - Метаданные БД: "03. astronomer-infra/airflow-database.md"
+    - Исполнители (Executors): "03. astronomer-infra/executors.md"
+    - Масштабирование: "03. astronomer-infra/scaling-airflow.md"
+
+  - "04. Продвинутые темы (Astronomer)":
+    - Оглавление: "04. astronomer-advanced/README.md"
+    - Политики кластера: "04. astronomer-advanced/advanced-cluster-policies.md"
+    - Airflow для MLOps: "04. astronomer-advanced/airflow-mlops.md"
+    - Плагины: "04. astronomer-advanced/airflow-plugins.md"
+    - Пуллы (Pools): "04. astronomer-advanced/airflow-pools.md"
+    - XCom backend: "04. astronomer-advanced/custom-xcom-backends.md"
+    - Deferrable-операторы: "04. astronomer-advanced/deferrable-operators.md"
+    - Event-driven планирование: "04. astronomer-advanced/event-driven-scheduling.md"
+    - Human-in-the-loop: "04. astronomer-advanced/human-in-the-loop.md"
+    - Изолированные окружения: "04. astronomer-advanced/isolated-environments.md"
+    - KubernetesPodOperator: "04. astronomer-advanced/kubernetes-pod-operator.md"
+    - Логирование: "04. astronomer-advanced/logging.md"
+    - Мультиязычность: "04. astronomer-advanced/multilanguage.md"
+    - Динамическая генерация DAG: "04. astronomer-advanced/dynamic-dags.md"
+    - Setup и teardown: "04. astronomer-advanced/setup-teardown.md"
+    - Общий код: "04. astronomer-advanced/sharing-code.md"
+    - Синхронное выполнение: "04. astronomer-advanced/synchronous-execution.md"
+    - Тестирование: "04. astronomer-advanced/testing-airflow.md"
+
+  - "05. Написание DAG (Astronomer)":
+    - Оглавление: "05. astronomer-write-dags/README.md"
+    - Airflow Object Storage: "05. astronomer-write-dags/airflow-objectstorage.md"
+    - Документирование DAG: "05. astronomer-write-dags/dag-documentation.md"
+    - DAG Factory: "05. astronomer-write-dags/dag-factory.md"
+    - "PyCharm: локальная разработка": "05. astronomer-write-dags/pycharm-local-dev.md"
+    - "SQL check operators": "05. astronomer-write-dags/sql-check-operators.md"
+    - "VS Code: локальная разработка": "05. astronomer-write-dags/vscode-local-dev.md"

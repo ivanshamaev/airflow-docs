@@ -12,7 +12,7 @@
 
 ## Важно для нижестоящих задач
 
-После ветвления только одна ветка выполняется, остальные — skipped. Задача, объединяющая ветки (например, `end`), по умолчанию ждёт **all_success** и не запустится, так как в пропущенных ветках нет success. Нужно задать **trigger_rule**: `none_failed_min_one_success` или `none_failed`, чтобы задача запустилась после одной успешной ветки. См. [Trigger rules](../astronomer-basic/trigger-rules.md).
+После ветвления только одна ветка выполняется, остальные — skipped. Задача, объединяющая ветки (например, `end`), по умолчанию ждёт **all_success** и не запустится, так как в пропущенных ветках нет success. Нужно задать **trigger_rule**: `none_failed_min_one_success` или `none_failed`, чтобы задача запустилась после одной успешной ветки. См. [Trigger rules](../01. astronomer-basic/trigger-rules.md).
 
 ## Пример (@task.branch)
 
@@ -29,8 +29,8 @@ for i in range(0, 3):
     branching_task >> d >> end  # end с trigger_rule="none_failed_min_one_success"
 ```
 
-Подробнее: [BranchOperator](https://www.astronomer.io/docs/learn/airflow-branch-operator), [Trigger rules](../astronomer-basic/trigger-rules.md).
+Подробнее: [BranchOperator](https://www.astronomer.io/docs/learn/airflow-branch-operator), [Trigger rules](../01. astronomer-basic/trigger-rules.md).
 
 ---
 
-[← К содержанию](README.md) | [Зависимости задач →](../astronomer-basic/task-dependencies.md)
+[← К содержанию](README.md) | [Зависимости задач →](../01. astronomer-basic/task-dependencies.md)

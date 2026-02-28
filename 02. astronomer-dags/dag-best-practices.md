@@ -27,4 +27,4 @@
 
 ---
 
-[← К содержанию](README.md) | [Параметры DAG →](dag-parameters.md) | [Управление кодом →](../astronomer-basic/managing-airflow-code.md)
+[← К содержанию](README.md) | [Параметры DAG →](dag-parameters.md) | [Управление кодом →](../01. astronomer-basic/managing-airflow-code.md)

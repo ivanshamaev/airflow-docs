@@ -6,7 +6,7 @@
 
 - **ExternalTaskSensor** — задача ждёт завершения задачи в другом DAG (и опционально в том же logical date / data interval). Параметры: `external_dag_id`, `external_task_id`, `execution_delta` или `execution_date_fn` для выравнивания по времени.
 - **TriggerDagRunOperator** — задача запускает другой DAG (передаёт конфиг в DAG run). Подходит для каскадного запуска.
-- **Ассеты (Assets / Datasets)** — DAG A обновляет ассет (outlets), DAG B запланирован по этому ассету (`schedule=[Asset("...")]`). DAG B запускается после успешного обновления ассета задачей из DAG A. Не занимает слот воркера в отличие от сенсора. См. [Ассеты](../astronomer-basic/assets.md).
+- **Ассеты (Assets / Datasets)** — DAG A обновляет ассет (outlets), DAG B запланирован по этому ассету (`schedule=[Asset("...")]`). DAG B запускается после успешного обновления ассета задачей из DAG A. Не занимает слот воркера в отличие от сенсора. См. [Ассеты](../01. astronomer-basic/assets.md).
 - **REST API** — внешняя система или задача вызывает API Airflow для запуска DAG или проверки статуса.
 
 ## Рекомендации
@@ -18,4 +18,4 @@
 
 ---
 
-[← К содержанию](README.md) | [Ассеты →](../astronomer-basic/assets.md) | [Сенсоры →](../astronomer-basic/sensors.md)
+[← К содержанию](README.md) | [Ассеты →](../01. astronomer-basic/assets.md) | [Сенсоры →](../01. astronomer-basic/sensors.md)

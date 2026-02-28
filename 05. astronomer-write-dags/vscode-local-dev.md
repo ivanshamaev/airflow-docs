@@ -23,7 +23,7 @@
 
 После настройки VS Code показывает предупреждения и автодополнение для Airflow API.
 
-Подробнее: [VS Code local development](https://www.astronomer.io/docs/learn/vscode-local-dev), [Debug with dag.test()](../astronomer-advanced/testing-airflow.md).
+Подробнее: [VS Code local development](https://www.astronomer.io/docs/learn/vscode-local-dev), [Debug with dag.test()](../04. astronomer-advanced/testing-airflow.md).
 
 ---
 

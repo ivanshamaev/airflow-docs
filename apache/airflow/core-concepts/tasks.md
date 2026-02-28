@@ -106,4 +106,4 @@ MyOperator(...,
 
 ---
 
-[← DAG](dags.md) | [К основным концепциям](README.md) | [К содержанию](../README.md)
+[← DAG](dags.md) | [К основным концепциям](README.md) | [К содержанию](../toc.md)

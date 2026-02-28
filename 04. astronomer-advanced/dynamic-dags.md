@@ -6,7 +6,7 @@ DAG можно создавать **программно**: в цикле, по 
 
 При использовании переменных/конфигов учитывайте кэширование парсера: изменение переменной подхватится после следующего парсинга. Избегайте генерации тысяч DAG в одном файле — лучше разбить по источникам или использовать DAG bundles.
 
-Подробнее: [Dynamically generating DAGs](https://www.astronomer.io/docs/learn/dynamically-generating-dags), [DAG best practices](../astronomer-dags/dag-best-practices.md).
+Подробнее: [Dynamically generating DAGs](https://www.astronomer.io/docs/learn/dynamically-generating-dags), [DAG best practices](../02. astronomer-dags/dag-best-practices.md).
 
 ---
 
