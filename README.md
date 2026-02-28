@@ -2,11 +2,10 @@
 
 Русский перевод документации **Apache Airflow®** в формате Markdown. Структура ориентирована на разделы сайта [Astronomer.io Docs](https://www.astronomer.io/docs/learn/). Для личного использования и размещения на GitHub.
 
----
 
-Подписывайтесь на телеграм канал t.me/data_engineer_path
+Подписывайтесь на телеграм канал [@data_engineer_path](t.me/data_engineer_path)
 
----
+
 ## Структура документов
 
 ### Apache Airflow (официальная документация)
@@ -18,7 +17,6 @@
   - [Основные концепции](apache/airflow/core-concepts/README.md) — DAG, задачи (Tasks)
   - [Быстрый старт](apache/airflow/quick-start.md)
 
----
 
 ### 01. Airflow Concepts: Basics (Astronomer)
 
@@ -27,7 +25,6 @@
 - **[01. astronomer-basic/](01.%20astronomer-basic/)** — оглавление раздела
 - Темы: Airflow UI, ассеты, BashOperator, Connections, DAG, выполнение SQL, Hooks, управление кодом, операторы, планирование, сенсоры, зависимости задач, trigger rules, переменные.
 
----
 
 ### 02. Airflow DAGs (Astronomer)
 
@@ -36,7 +33,6 @@
 - **[02. astronomer-dags/](02.%20astronomer-dags/)** — оглавление раздела
 - Темы: контекст Airflow, декораторы, уведомления, params, BranchOperator, cross-DAG зависимости, кастомные хуки и операторы, лучшие практики, параметры DAG, версионирование, отладка, динамические задачи, Jinja-шаблоны, передача данных между задачами, повторный запуск, task groups.
 
----
 
 ### 03. Airflow: инфраструктура (Astronomer)
 
@@ -45,7 +41,6 @@
 - **[03. astronomer-infra/](03.%20astronomer-infra/)** — оглавление раздела
 - Темы: компоненты (Scheduler, API server, DAG processor, Triggerer, БД), метаданные БД, executors (Astro, Kubernetes, Celery, Local), масштабирование воркеров.
 
----
 
 ### 04. Airflow: продвинутые темы (Astronomer)
 
@@ -53,7 +48,6 @@
 
 - **[04. astronomer-advanced/](04.%20astronomer-advanced/)** — оглавление раздела
 
----
 
 ### 05. Airflow: написание DAG (Astronomer)
 
@@ -62,7 +56,6 @@
 - **[05. astronomer-write-dags/](05.%20astronomer-write-dags/)** — оглавление раздела
 - Темы: Airflow Object Storage, документирование DAG, DAG Factory (YAML), разработка в PyCharm, SQL check operators (data quality), разработка в VS Code.
 
----
 
 ## Использование
 
