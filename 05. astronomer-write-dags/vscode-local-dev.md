@@ -1,29 +1,43 @@
 # VS Code: локальная разработка
 
-Настройка [VS Code](https://code.visualstudio.com/) для локальной разработки DAG с [Astro CLI](https://www.astronomer.io/docs/astro/cli/overview): автодополнение, подсветка ошибок, работа внутри контейнера.
+> Эта страница ещё не обновлена для Airflow 3. Показанные концепции актуальны, но часть кода может потребовать изменений. При запуске примеров обновите при необходимости импорты и учитывайте возможные breaking changes.
+>
+> Info
 
-## Требования
+В этом примере показано, как настроить [VS Code](https://code.visualstudio.com/) для локальной разработки с Airflow и [Astro CLI](https://www.astronomer.io/docs/astro/cli/overview). Настройка локальной среды позволяет быстрее итерироваться при разработке DAG, используя возможности IDE: автодополнение кода, подсветку устаревших и неиспользуемых импортов, подсветку ошибок и предупреждений.
 
-- Astro-проект, запущенный локально (`astro dev start`).
-- Astro CLI.
-- Расширение [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
-- VS Code.
+## Перед началом
 
-## Шаги
+Перед этим примером убедитесь, что у вас есть:
 
-1. Открыть папку Astro-проекта в VS Code.
-2. В левом нижнем углу нажать на иконку контейнеров → **Open Folder in Container...**.
-3. Выбрать **From 'Dockerfile'** — откроется новое окно с подключением к контейнеру (в углу будет индикатор).
-4. Установить расширение **Python** (Microsoft) в контейнере: Extensions → Python → Install in Container.
-5. Открыть файл из `dags/` (например, `example_dag_basic.py`) — интерпретатор должен определиться автоматически.
+- Astro-проект, запущенный локально на компьютере. См. [Getting started with the Astro CLI](https://www.astronomer.io/docs/astro/cli/get-started-cli)
+- [Astro CLI](https://www.astronomer.io/docs/astro/cli/install-cli)
+- Расширение [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) для VS Code
+- [VS Code](https://code.visualstudio.com/)
 
-![Open Folder in Container](images/vscode_open_folder.png)
+## Написание кода Airflow в VS Code
 
-![Автодополнение в VS Code](images/vscode_code.png)
+Выполните шаги ниже, чтобы начать писать DAG в VS Code.
 
-После настройки VS Code показывает предупреждения и автодополнение для Airflow API.
+1. Откройте в VS Code папку с вашим Astro-проектом. В левом нижнем углу окна нажмите на зелёную иконку контейнеров и выберите **Open Folder in Container...**
 
-Подробнее: [VS Code local development](https://www.astronomer.io/docs/learn/vscode-local-dev), [Debug with dag.test()](../04. astronomer-advanced/testing-airflow.md).
+![Открытие папки в контейнере](images/vscode_local_dev_open_folder.png)
+
+2. Откроется проводник с предложением выбрать папку проекта. Выберите папку Astro-проекта и нажмите **Open**, затем **From 'Dockerfile'**. Откроется новое окно VS Code; в левом нижнем углу будет видно, что среда подключена к запущенному Docker-контейнеру.
+3. Установите расширение [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) в новую сессию VS Code: откройте раздел **Extensions**, найдите `Python` — первым в списке должно быть расширение от Microsoft. Установите его, нажав **Install in Container**.
+
+![Установка расширения Python в контейнере](images/vscode_local_dev_extension.png)
+
+4. Убедитесь, что интерпретатор Python настроен: откройте в папке `dags/` вашего Astro-проекта файл `dags/example_dag_basic.py` и начните набирать Python-код.
+
+После настройки интеграции VS Code начнёт показывать предупреждения и подсказки автодополнения для Airflow. В примере ниже видно, что интерпретатор предлагает автодополнение для строки импорта.
+
+![Автодополнение в VS Code](images/vscode_local_dev_code.png)
+
+## См. также
+
+- [Интерактивная отладка с dag.test()](../04.%20astronomer-advanced/testing-airflow.md#debug-interactively-with-dagtest)
+- [Разработка в PyCharm](pycharm-local-dev.md)
 
 ---
 
