@@ -50,15 +50,6 @@ plugins:
 nav:
   - Главная: README.md
 
-  - Apache Airflow:
-    - Оглавление: apache/airflow/toc.md
-    - Что такое Airflow: apache/airflow/index.md
-    - Основные концепции:
-      - Обзор: apache/airflow/core-concepts/README.md
-      - DAG: apache/airflow/core-concepts/dags.md
-      - Задачи (Tasks): apache/airflow/core-concepts/tasks.md
-    - Быстрый старт: apache/airflow/quick-start.md
-
   - "01. Basics (Astronomer)":
     - Оглавление: "01. astronomer-basic/README.md"
     - Интерфейс Airflow (UI): "01. astronomer-basic/airflow-ui.md"

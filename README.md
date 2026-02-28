@@ -2,21 +2,10 @@
 
 Русский перевод документации **Apache Airflow®** в формате Markdown. Структура ориентирована на разделы сайта [Astronomer.io Docs](https://www.astronomer.io/docs/learn/). Для личного использования и размещения на GitHub.
 
-
+## Телеграм канал
 Подписывайтесь на телеграм канал [@data_engineer_path](https://t.me/data_engineer_path)
 
-
 ## Структура документов
-
-### Apache Airflow (официальная документация)
-
-Краткий перевод основных разделов с [airflow.apache.org](https://airflow.apache.org/docs/):
-
-- **[apache/airflow/](apache/airflow/)** — оглавление
-  - [Что такое Airflow?](apache/airflow/index.md)
-  - [Основные концепции](apache/airflow/core-concepts/README.md) — DAG, задачи (Tasks)
-  - [Быстрый старт](apache/airflow/quick-start.md)
-
 
 ### 01. Airflow Concepts: Basics (Astronomer)
 
