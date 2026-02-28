@@ -130,7 +130,7 @@ with DAG("my_continuous_dag", schedule="@continuous"):
 
 У Dag Run есть даты начала и окончания и **логическая дата** (logical date, раньше — execution date) — момент, на который запланирован или запущен этот запуск.
 
-Задачи внутри DAG при каждом запуске превращаются в [экземпляры задач (Task Instances)](tasks.md#экземпляры-задач-task-instances).
+Задачи внутри DAG при каждом запуске превращаются в [экземпляры задач (Task Instances)](tasks.md#task-instances).
 
 ## Присвоение DAG задаче
 
