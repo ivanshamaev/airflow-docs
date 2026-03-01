@@ -124,8 +124,9 @@ nav:
 
   - "09. Прочее":
     - Pydantic:
+      - Оглавление Pydantic: "09. others/Pydantic/README.md"
       - Добро пожаловать в Pydantic: "09. others/Pydantic/welcome-to-pydantic.md"
-      - Модели (Models): "09. others/Pydantic/Models.md"
+      - Модели (Models): "09. others/Pydantic/models.md"
       - Поля (Fields): "09. others/Pydantic/fields.md"
       - Типы (Types): "09. others/Pydantic/types.md"
       - Валидация данных из файлов: "09. others/Pydantic/validating-file-data.md"

@@ -45,7 +45,7 @@ Delivery(timestamp='2020-01-02T03:04:05Z', dimensions=['10'])  # (2)!
 
 В платформе Logfire вы увидите примерно такую картину:
 
-![Мониторинг Pydantic в Logfire](images/logfire-pydantic-monitoring.webp)
+*Изображение: мониторинг Pydantic в Logfire (см. [документацию Logfire](https://logfire.pydantic.dev/docs/)).*
 
 Это упрощённый пример, но он показывает ценность инструментирования более сложного приложения.
 
@@ -172,6 +172,6 @@ except ValidationError as e:
 
 Сотни организаций и пакетов используют Pydantic. Среди известных компаний и организаций — Adobe, Amazon и AWS, Anthropic, Apple, ASML, AstraZeneca, Cisco Systems, Comcast, Datadog, Facebook, GitHub, Google, HSBC, IBM, Intel, Intuit, Intergovernmental Panel on Climate Change, JPMorgan, Jupyter, Microsoft, Molecular Science Software Institute, NASA, Netflix, NSA, NVIDIA, OpenAI, Oracle, Palantir, Qualcomm, Red Hat, Revolut, Robusta, Salesforce, Starbucks, Texas Instruments, Twilio, Twitter, UK Home Office и другие.
 
-![Кто использует Pydantic](images/pydantic-who-uses.webp)
+*Изображение: кто использует Pydantic.*
 
 Более полный список open-source проектов: [зависимости на GitHub](https://github.com/pydantic/pydantic/network/dependents) и подборка в [awesome-pydantic](https://github.com/Kludex/awesome-pydantic).
