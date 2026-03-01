@@ -49,7 +49,7 @@ plugins:
 nav:
   - Главная: README.md
 
-  - "01. Basics (Astronomer)":
+  - "01. Basics":
     - Оглавление: "01. astronomer-basic/README.md"
     - Интерфейс Airflow (UI): "01. astronomer-basic/airflow-ui.md"
     - Ассеты и data-aware: "01. astronomer-basic/assets.md"
@@ -66,7 +66,7 @@ nav:
     - Trigger rules: "01. astronomer-basic/trigger-rules.md"
     - Переменные: "01. astronomer-basic/variables.md"
 
-  - "02. DAGs (Astronomer)":
+  - "02. DAGs":
     - Оглавление: "02. astronomer-dags/README.md"
     - Контекст Airflow: "02. astronomer-dags/airflow-context.md"
     - Декораторы: "02. astronomer-dags/airflow-decorators.md"
@@ -85,14 +85,14 @@ nav:
     - Повторный запуск (Rerunning): "02. astronomer-dags/rerunning-dags.md"
     - Группы задач: "02. astronomer-dags/task-groups.md"
 
-  - "03. Инфраструктура (Astronomer)":
+  - "03. Инфраструктура":
     - Оглавление: "03. astronomer-infra/README.md"
     - Компоненты Airflow: "03. astronomer-infra/airflow-components.md"
     - Метаданные БД: "03. astronomer-infra/airflow-database.md"
     - Исполнители (Executors): "03. astronomer-infra/executors.md"
     - Масштабирование: "03. astronomer-infra/scaling-airflow.md"
 
-  - "04. Продвинутые темы (Astronomer)":
+  - "04. Продвинутые темы":
     - Оглавление: "04. astronomer-advanced/README.md"
     - Политики кластера: "04. astronomer-advanced/advanced-cluster-policies.md"
     - Airflow для MLOps: "04. astronomer-advanced/airflow-mlops.md"
@@ -112,7 +112,7 @@ nav:
     - Синхронное выполнение: "04. astronomer-advanced/synchronous-execution.md"
     - Тестирование: "04. astronomer-advanced/testing-airflow.md"
 
-  - "05. Написание DAG (Astronomer)":
+  - "05. Написание DAG":
     - Оглавление: "05. astronomer-write-dags/README.md"
     - Airflow Object Storage: "05. astronomer-write-dags/airflow-objectstorage.md"
     - Документирование DAG: "05. astronomer-write-dags/dag-documentation.md"
