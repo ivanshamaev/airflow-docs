@@ -29,7 +29,6 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
-    #- navigation.expand
     - navigation.indexes
     - search.suggest
     - search.highlight
@@ -44,6 +43,7 @@ repo_name: ivanshamaev/airflow-docs
 
 plugins:
   - search
+  - glightbox
 
 # Навигация: слева меню, справа контент
 nav:
