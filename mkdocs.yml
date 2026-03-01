@@ -121,3 +121,14 @@ nav:
     - "PyCharm: локальная разработка": "05. astronomer-write-dags/pycharm-local-dev.md"
     - "SQL check operators": "05. astronomer-write-dags/sql-check-operators.md"
     - "VS Code: локальная разработка": "05. astronomer-write-dags/vscode-local-dev.md"
+
+  - "09. Прочее":
+    - Pydantic:
+      - Добро пожаловать в Pydantic: "09. others/Pydantic/welcome-to-pydantic.md"
+      - Модели (Models): "09. others/Pydantic/Models.md"
+      - Поля (Fields): "09. others/Pydantic/fields.md"
+      - Типы (Types): "09. others/Pydantic/types.md"
+      - Валидация данных из файлов: "09. others/Pydantic/validating-file-data.md"
+      - Веб- и API-запросы: "09. others/Pydantic/requests.md"
+      - Очереди (Queues): "09. others/Pydantic/queues.md"
+      - Базы данных (Databases): "09. others/Pydantic/databases.md"
