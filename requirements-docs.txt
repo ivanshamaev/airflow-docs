@@ -1,2 +1,3 @@
 # Сборка и локальный просмотр сайта документации
 mkdocs-material>=9.5.0
+mkdocs-glightbox
