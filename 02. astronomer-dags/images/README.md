@@ -3,6 +3,7 @@
 Изображения взяты из документации [Astronomer.io Docs](https://www.astronomer.io/docs/learn/) для раздела Airflow DAGs (написание и отладка DAG).
 
 **Task groups:**
+- `3-0_task-groups_intro_task_group_gif.gif` — вводная анимация по группам задач
 - `3_0_taskgroups_simple_grid.png` — группа задач в представлении Grid
 - `3_0_taskgroups_simple_graph.png` — группа задач в представлении Graph
 - `3_0_taskgroups_passing_data.png` — передача данных через группу (DAG)
