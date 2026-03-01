@@ -132,6 +132,7 @@ nav:
     - Операторы Cosmos: "06. dbt/getting-started-operators.md"
 
   - "09. Прочее":
+    - Оглавление: "09. others/README.md"
     - Менеджер пакетов (uv):
       - Оглавление: "09. others/package-manager/README.md"
       - Введение в uv: "09. others/package-manager/uv-introduction.md"
