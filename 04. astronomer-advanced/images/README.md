@@ -31,5 +31,11 @@
 - `airflow-setup-teardown_intro_dag.png` — пример DAG с setup и teardown задачами
 - `dag_from_loop_zoom.png` — DAG из цикла в UI Airflow
 - `dag_from_variables.png` — DAG из переменных окружения в UI Airflow
+- `audit-logs-cap.webp` — аудит-логи
+- `logging_event_logs.webp` — журнал событий (event log)
+- `logging_log_groups.gif` — группы логов (CloudWatch)
+- `logging_logs_custom_colors.webp` — кастомные цвета логов в UI
+- `logging-task_logs_grid_view.gif` — логи задач в Grid
+- `logs_s3_bucket.webp` — S3 bucket для логов
 
 Источник: Astronomer (files.buildwithfern.com). Используются в переведённых markdown-файлах `astronomer-advanced/`.
