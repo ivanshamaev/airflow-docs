@@ -2,7 +2,10 @@
 
 Неофициальный русский перевод документации **Apache Airflow®** и [Astronomer Learn](https://www.astronomer.io/docs/learn/) в Markdown. Для личного использования и GitHub.
 
----
+
+## Телеграм
+
+[@data_engineer_path](https://t.me/data_engineer_path)
 
 ## Содержание сайта
 
@@ -18,22 +21,12 @@
 
 В каждом разделе — оглавление и ссылки на все страницы.
 
----
-
-## Телеграм
-
-[@data_engineer_path](https://t.me/data_engineer_path)
-
----
-
 ## Сайт (GitHub Pages)
 
 Сборка: **MkDocs** + тема **Material** (боковое меню, поиск). Деплой при пуше в `main` через GitHub Actions.
 
 - **URL:** `https://<владелец>.github.io/airflow-docs/` (включите **Settings → Pages → Source: GitHub Actions**).
 - **Локально:** `pip install mkdocs-material && mkdocs serve` → http://127.0.0.1:8000
-
----
 
 ## Использование
 
