@@ -18,11 +18,11 @@
 
 Видео по теме: [Manage Dependencies Between Airflow Deployments, DAGs, and Tasks](https://www.astronomer.io/events/webinars/manage-dependencies-between-airflow-deployments-dags-tasks/).
 
-Здесь рассматриваются зависимости между задачами **внутри одного DAG**. Зависимости между разными DAG: [Cross-DAG dependencies](https://www.astronomer.io/docs/learn/cross-dag-dependencies).
+Здесь рассматриваются зависимости между задачами **внутри одного DAG**. Зависимости между разными DAG: [Cross-DAG dependencies](../02.%20astronomer-dags/cross-dag-dependencies.md).
 
 ## Необходимая база
 
-Нужно понимать основы Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+Нужно понимать основы Airflow. См. [Введение в Apache Airflow](README.md).
 
 ## Базовые зависимости
 
@@ -129,7 +129,7 @@ chain_linear([t0, t1], [t2, t3, t4])
 
 ## Зависимости при динамическом маппинге задач
 
-Зависимости для [динамически маппленных задач](https://www.astronomer.io/docs/learn/dynamic-tasks) задаются так же, как для обычных. При [trigger rule](trigger-rules.md) по умолчанию `all_success` все экземпляры маппленной задачи должны завершиться успешно, чтобы запустилась нижестоящая задача (с точки зрения trigger rules они ведут себя как набор параллельных вышестоящих задач).
+Зависимости для [динамически маппленных задач](../02.%20astronomer-dags/dynamic-tasks.md) задаются так же, как для обычных. При [trigger rule](trigger-rules.md) по умолчанию `all_success` все экземпляры маппленной задачи должны завершиться успешно, чтобы запустилась нижестоящая задача (с точки зрения trigger rules они ведут себя как набор параллельных вышестоящих задач).
 
 **Вариант с TaskFlow API:**
 
@@ -190,7 +190,7 @@ start >> multiply_obj >> end
 
 ## Зависимости с task groups
 
-[Task groups](https://www.astronomer.io/docs/learn/task-groups) логически группируют задачи в UI и могут [создаваться динамически](https://www.astronomer.io/docs/learn/task-groups#generate-task-groups-dynamically-at-runtime). Ниже — как задавать зависимости между группами и внутри них.
+[Task groups](../02.%20astronomer-dags/task-groups.md) логически группируют задачи в UI и могут [создаваться динамически](../02.%20astronomer-dags/task-groups.md). Ниже — как задавать зависимости между группами и внутри них.
 
 Зависимости задаются и внутри группы, и снаружи. В примере: стартовая задача, группа из двух зависимых задач и конечная задача идут последовательно. Зависимость между двумя задачами внутри группы задаётся в контексте группы (`t1 >> t2`). Зависимости группы со стартом и концом — в контексте DAG (`t0 >> tg1() >> t3`).
 
@@ -241,7 +241,7 @@ t0 >> tg1 >> t3
 
 ## Зависимости в TaskFlow API
 
-Декоратор [TaskFlow API](https://www.astronomer.io/docs/learn/airflow-decorators) `@task` превращает Python-функции в задачи Airflow.
+Декоратор [TaskFlow API](../02.%20astronomer-dags/airflow-decorators.md) `@task` превращает Python-функции в задачи Airflow.
 
 Если в DAG несколько задач с `@task` используют выход друг друга, зависимости можно задать неявно: передать вызов вышестоящей задачи аргументом в нижестоящую. В примере две задачи — `get_a_cat_fact` и `print_the_cat_fact`. Зависимость задаётся так: `print_the_cat_fact(get_a_cat_fact())`.
 
@@ -325,7 +325,7 @@ def my_dag():
 my_dag()
 ```
 
-Передачу данных между декораторами TaskFlow и традиционными операторами см. в [Mixing TaskFlow decorators with traditional operators](https://www.astronomer.io/docs/learn/airflow-decorators#mixing-taskflow-decorators-with-traditional-operators).
+Передачу данных между декораторами TaskFlow и традиционными операторами см. в [Mixing TaskFlow decorators with traditional operators](../02.%20astronomer-dags/airflow-decorators.md).
 
 ## Trigger rules (правила срабатывания)
 

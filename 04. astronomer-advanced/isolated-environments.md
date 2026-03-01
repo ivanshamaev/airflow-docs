@@ -17,7 +17,7 @@
 >
 > Другие способы изучить тему
 
-> В этом руководстве рассматриваются варианты изоляции отдельных задач в Airflow. Если нужно запускать все задачи Airflow в отдельных pod’ах Kubernetes, см. [Kubernetes Executor](https://www.astronomer.io/docs/learn/airflow-executors-explained#kubernetes-executor). Клиенты Astronomer могут настроить использование KubernetesExecutor в UI Astro: [Manage Airflow executors on Astro](https://www.astronomer.io/docs/astro/executors-overview).
+> В этом руководстве рассматриваются варианты изоляции отдельных задач в Airflow. Если нужно запускать все задачи Airflow в отдельных pod’ах Kubernetes, см. [Kubernetes Executor](../03.%20astronomer-infra/executors.md). Клиенты Astronomer могут настроить использование KubernetesExecutor в UI Astro: [Manage Airflow executors on Astro](https://www.astronomer.io/docs/astro/executors-overview).
 >
 > Информация
 
@@ -29,8 +29,8 @@
 
 - Основы Kubernetes. См. [Kubernetes Documentation](https://kubernetes.io/docs/home/).
 - Виртуальные окружения Python. См. [Python Virtual Environments: A Primer](https://realpython.com/python-virtual-environments-a-primer/).
-- Операторы Airflow. См. [Операторы Airflow](https://www.astronomer.io/docs/learn/what-is-an-operator).
-- Декораторы Airflow. См. [Введение в TaskFlow API и декораторы Airflow](https://www.astronomer.io/docs/learn/airflow-decorators).
+- Операторы Airflow. См. [Операторы Airflow](../01.%20astronomer-basic/operators.md).
+- Декораторы Airflow. См. [Введение в TaskFlow API и декораторы Airflow](../02.%20astronomer-dags/airflow-decorators.md).
 
 ## Когда использовать изолированные окружения
 
@@ -53,9 +53,9 @@ https://raw.githubusercontent.com/apache/airflow/constraints-<AIRFLOW VERSION>/c
 
 Типичные ограничения:
 
-- Установка самого Airflow или пакетов провайдеров Airflow в окружении, передаваемом декоратору `@task.external_python` или ExternalPythonOperator, может приводить к неожиданному поведению. Если внутри виртуального окружения нужны Airflow или модуль провайдера Airflow, Astronomer рекомендует использовать декоратор `@task.virtualenv` или PythonVirtualenvOperator. См. [Использование пакетов Airflow в изолированных окружениях](https://www.astronomer.io/docs/learn/airflow-isolated-environments#use-airflow-packages-in-isolated-environments).
-- Из изолированного окружения нет доступа к [secrets backend](https://airflow.apache.org/docs/apache-airflow/stable/security/secrets/secrets-backend/index.html). Чтобы передать секреты, используйте [шаблоны Jinja](https://www.astronomer.io/docs/learn/templating). См. [Использование переменных Airflow в изолированных окружениях](https://www.astronomer.io/docs/learn/airflow-isolated-environments#use-airflow-variables-in-isolated-environments).
-- [Не все переменные контекста Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#id1) можно передать в виртуальный декоратор: Airflow не поддерживает сериализацию объектов `var`, `ti` и `task_instance`. См. [Использование переменных контекста Airflow в изолированных окружениях](https://www.astronomer.io/docs/learn/airflow-isolated-environments#use-airflow-context-variables-in-isolated-environments).
+- Установка самого Airflow или пакетов провайдеров Airflow в окружении, передаваемом декоратору `@task.external_python` или ExternalPythonOperator, может приводить к неожиданному поведению. Если внутри виртуального окружения нужны Airflow или модуль провайдера Airflow, Astronomer рекомендует использовать декоратор `@task.virtualenv` или PythonVirtualenvOperator. См. [Использование пакетов Airflow в изолированных окружениях](isolated-environments.md).
+- Из изолированного окружения нет доступа к [secrets backend](https://airflow.apache.org/docs/apache-airflow/stable/security/secrets/secrets-backend/index.html). Чтобы передать секреты, используйте [шаблоны Jinja](../02.%20astronomer-dags/jinja-templating.md). См. [Использование переменных Airflow в изолированных окружениях](isolated-environments.md).
+- [Не все переменные контекста Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#id1) можно передать в виртуальный декоратор: Airflow не поддерживает сериализацию объектов `var`, `ti` и `task_instance`. См. [Использование переменных контекста Airflow в изолированных окружениях](isolated-environments.md).
 
 ## Выбор варианта изолированного окружения
 
@@ -63,37 +63,37 @@ https://raw.githubusercontent.com/apache/airflow/constraints-<AIRFLOW VERSION>/c
 
 Чтобы запускать задачи в отдельном pod Kubernetes, можно использовать:
 
-- [KubernetesPodOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) (KPO)
-- Декоратор [`@task.kubernetes`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator)
+- [KubernetesPodOperator](isolated-environments.md) (KPO)
+- Декоратор [`@task.kubernetes`](isolated-environments.md)
 
 Чтобы запускать задачи в виртуальном окружении Python, можно использовать:
 
-- Декоратор [`@task.branch_virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) / BranchPythonVirtualenvOperator (BPVO)
-- Декоратор [`@task.branch_external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) / BranchExternalPythonOperator (BEPO)
-- Декоратор [`@task.virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator) / PythonVirtualenvOperator (PVO)
-- Декоратор [`@task.external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#external-python-operator) / ExternalPythonOperator (EPO)
+- Декоратор [`@task.branch_virtualenv`](isolated-environments.md) / BranchPythonVirtualenvOperator (BPVO)
+- Декоратор [`@task.branch_external_python`](isolated-environments.md) / BranchExternalPythonOperator (BEPO)
+- Декоратор [`@task.virtualenv`](isolated-environments.md) / PythonVirtualenvOperator (PVO)
+- Декоратор [`@task.external_python`](isolated-environments.md) / ExternalPythonOperator (EPO)
 
-У декораторов виртуальных окружений есть операторы с той же функциональностью. Astronomer рекомендует по возможности использовать декораторы — они упрощают работу с [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks).
+У декораторов виртуальных окружений есть операторы с той же функциональностью. Astronomer рекомендует по возможности использовать декораторы — они упрощают работу с [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md).
 
 Выбор зависит от сценария и требований задачи. В таблице ниже указано, какие декораторы и операторы лучше подходят для типичных случаев.
 
 | Сценарий | Варианты реализации |
 | --- | --- |
-| Запуск Python-задачи в pod K8s | [`@task.kubernetes`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator), [KubernetesPodOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) |
-| Запуск Docker-образа без дополнительного Python-кода в pod K8s | [KubernetesPodOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) |
-| Запуск Python-задачи в существующем (переиспользуемом) виртуальном окружении | [`@task.external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#external-python-operator), [ExternalPythonOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#external-python-operator) |
-| Запуск Python-задачи в новом виртуальном окружении | [`@task.virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator), [PythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator) |
-| Ветвящийся код в существующем (переиспользуемом) виртуальном окружении | [`@task.branch_external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators), [BranchExternalPythonOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) |
-| Ветвящийся код в новом виртуальном окружении | [`@task.branch_virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators), [BranchPythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) |
-| Разные пакеты при каждом запуске задачи | [PythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator), [BranchPythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) |
+| Запуск Python-задачи в pod K8s | [`@task.kubernetes`](isolated-environments.md), [KubernetesPodOperator](isolated-environments.md) |
+| Запуск Docker-образа без дополнительного Python-кода в pod K8s | [KubernetesPodOperator](isolated-environments.md) |
+| Запуск Python-задачи в существующем (переиспользуемом) виртуальном окружении | [`@task.external_python`](isolated-environments.md), [ExternalPythonOperator](isolated-environments.md) |
+| Запуск Python-задачи в новом виртуальном окружении | [`@task.virtualenv`](isolated-environments.md), [PythonVirtualenvOperator](isolated-environments.md) |
+| Ветвящийся код в существующем (переиспользуемом) виртуальном окружении | [`@task.branch_external_python`](isolated-environments.md), [BranchExternalPythonOperator](isolated-environments.md) |
+| Ветвящийся код в новом виртуальном окружении | [`@task.branch_virtualenv`](isolated-environments.md), [BranchPythonVirtualenvOperator](isolated-environments.md) |
+| Разные пакеты при каждом запуске задачи | [PythonVirtualenvOperator](isolated-environments.md), [BranchPythonVirtualenvOperator](isolated-environments.md) |
 
 При выборе оператора важно учитывать доступную инфраструктуру. Операторы, запускающие задачи в pod’ах Kubernetes, дают полный контроль над окружением и ресурсами, но требуют кластер Kubernetes. Операторы, запускающие задачи в виртуальных окружениях Python, проще в настройке, но не дают такого же контроля над окружением и ресурсами.
 
 | Требования | Декораторы | Операторы |
 | --- | --- | --- |
-| Кластер Kubernetes | [`@task.kubernetes`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) | [KubernetesPodOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) |
-| Docker-образ | [`@task.kubernetes`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) (с установленным Python) | [KubernetesPodOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#kubernetes-pod-operator) (с Python или без) |
-| Исполняемый файл Python | [`@task.external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#external-python-operator), [`@task.branch_external_python`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators), [`@task.virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator) (*), [`@task.branch_virtualenv`](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) (*) | [ExternalPythonOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#external-python-operator), [BranchExternalPythonOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators), [PythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtualenv-operator) (*), [BranchPythonVirtualenvOperator](https://www.astronomer.io/docs/learn/airflow-isolated-environments#virtual-branching-operators) (*) |
+| Кластер Kubernetes | [`@task.kubernetes`](isolated-environments.md) | [KubernetesPodOperator](isolated-environments.md) |
+| Docker-образ | [`@task.kubernetes`](isolated-environments.md) (с установленным Python) | [KubernetesPodOperator](isolated-environments.md) (с Python или без) |
+| Исполняемый файл Python | [`@task.external_python`](isolated-environments.md), [`@task.branch_external_python`](isolated-environments.md), [`@task.virtualenv`](isolated-environments.md) (*), [`@task.branch_virtualenv`](isolated-environments.md) (*) | [ExternalPythonOperator](isolated-environments.md), [BranchExternalPythonOperator](isolated-environments.md), [PythonVirtualenvOperator](isolated-environments.md) (*), [BranchPythonVirtualenvOperator](isolated-environments.md) (*) |
 
 \* Нужен только если требуется версия Python, отличная от окружения Airflow.
 
@@ -123,7 +123,7 @@ PYENV 3.9 epo_pyenv epo_requirements.txt
 pandas==1.4.4
 ```
 
-> Установка самого Airflow и пакетов провайдеров Airflow в изолированных окружениях может приводить к неожиданному поведению и не рекомендуется. Если внутри виртуального окружения нужны Airflow или модули провайдеров Airflow, Astronomer рекомендует использовать декоратор `@task.virtualenv` или PythonVirtualenvOperator. См. [Использование пакетов Airflow в изолированных окружениях](https://www.astronomer.io/docs/learn/airflow-isolated-environments#use-airflow-packages-in-isolated-environments).
+> Установка самого Airflow и пакетов провайдеров Airflow в изолированных окружениях может приводить к неожиданному поведению и не рекомендуется. Если внутри виртуального окружения нужны Airflow или модули провайдеров Airflow, Astronomer рекомендует использовать декоратор `@task.virtualenv` или PythonVirtualenvOperator. См. [Использование пакетов Airflow в изолированных окружениях](isolated-environments.md).
 >
 > Предупреждение
 
@@ -169,7 +169,7 @@ my_isolated_task = ExternalPythonOperator(
 
 **Taskflow XCom**
 
-Передавать данные в задачу с декоратором `@task.external_python` и из неё можно так же, как при работе с задачей с декоратором `@task`. Подробнее: [Введение в TaskFlow API и декораторы Airflow](https://www.astronomer.io/docs/learn/airflow-decorators).
+Передавать данные в задачу с декоратором `@task.external_python` и из неё можно так же, как при работе с задачей с декоратором `@task`. Подробнее: [Введение в TaskFlow API и декораторы Airflow](../02.%20astronomer-dags/airflow-decorators.md).
 
 ```python
 """
@@ -245,7 +245,7 @@ external_python_decorator_dag()
 
 **Traditional XCom**
 
-Передавать данные в ExternalPythonOperator можно через [шаблон Jinja](https://www.astronomer.io/docs/learn/templating), получающий значения [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks) из [контекста Airflow](https://www.astronomer.io/docs/learn/airflow-context). Чтобы передать данные из ExternalPythonOperator наружу, верните их из `python_callable`. Учтите: шаблоны Jinja по умолчанию подставляются как строки; чтобы получить нативный объект, задайте в определении DAG `render_template_as_native_obj=True`.
+Передавать данные в ExternalPythonOperator можно через [шаблон Jinja](../02.%20astronomer-dags/jinja-templating.md), получающий значения [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md) из [контекста Airflow](../02.%20astronomer-dags/airflow-context.md). Чтобы передать данные из ExternalPythonOperator наружу, верните их из `python_callable`. Учтите: шаблоны Jinja по умолчанию подставляются как строки; чтобы получить нативный объект, задайте в определении DAG `render_template_as_native_obj=True`.
 
 ```python
 """
@@ -337,7 +337,7 @@ external_python_operator_dag()
 
 Оператор Virtualenv (декоратор `@task.virtualenv` или PythonVirtualenvOperator) при каждом запуске задачи создаёт новое виртуальное окружение. Если нужны только другие версии пакетов при той же версии Python, что и в окружении Airflow, создавать или указывать исполняемый файл Python не обязательно.
 
-> Установка самого Airflow и пакетов провайдеров Airflow в изолированных окружениях может приводить к неожиданному поведению и в целом не рекомендуется. См. [Использование пакетов Airflow в изолированных окружениях](https://www.astronomer.io/docs/learn/airflow-isolated-environments#use-airflow-packages-in-isolated-environments).
+> Установка самого Airflow и пакетов провайдеров Airflow в изолированных окружениях может приводить к неожиданному поведению и в целом не рекомендуется. См. [Использование пакетов Airflow в изолированных окружениях](isolated-environments.md).
 >
 > Предупреждение
 
@@ -378,7 +378,7 @@ my_isolated_task = PythonVirtualenvOperator(
 
 **Taskflow XCom**
 
-Передавать данные в задачу с декоратором `@task.virtualenv` и из неё можно так же, как при работе с задачей с декоратором `@task`. Подробнее: [Введение в TaskFlow API и декораторы Airflow](https://www.astronomer.io/docs/learn/airflow-decorators).
+Передавать данные в задачу с декоратором `@task.virtualenv` и из неё можно так же, как при работе с задачей с декоратором `@task`. Подробнее: [Введение в TaskFlow API и декораторы Airflow](../02.%20astronomer-dags/airflow-decorators.md).
 
 ```python
 """
@@ -448,7 +448,7 @@ virtualenv_decorator_dag()
 
 **Traditional XCom**
 
-Передавать данные в PythonVirtualenvOperator можно через [шаблон Jinja](https://www.astronomer.io/docs/learn/templating), получающий значения [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks) из [контекста Airflow](https://www.astronomer.io/docs/learn/airflow-context). Чтобы передать данные из PythonVirtualenvOperator наружу, верните их из `python_callable`. Шаблоны Jinja по умолчанию подставляются как строки; чтобы получить нативный объект, задайте в определении DAG `render_template_as_native_obj=True`.
+Передавать данные в PythonVirtualenvOperator можно через [шаблон Jinja](../02.%20astronomer-dags/jinja-templating.md), получающий значения [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md) из [контекста Airflow](../02.%20astronomer-dags/airflow-context.md). Чтобы передать данные из PythonVirtualenvOperator наружу, верните их из `python_callable`. Шаблоны Jinja по умолчанию подставляются как строки; чтобы получить нативный объект, задайте в определении DAG `render_template_as_native_obj=True`.
 
 ```python
 """
@@ -531,7 +531,7 @@ def python_virtualenv_operator_dag():
 python_virtualenv_operator_dag()
 ```
 
-Параметр `requirements` у PythonVirtualenvOperator [поддерживает шаблонизацию](https://www.astronomer.io/docs/learn/templating), поэтому можно использовать [шаблоны Jinja](https://www.astronomer.io/docs/learn/templating) для передачи данных в момент выполнения. Например, можно подставлять разную версию pandas при каждом запуске задачи.
+Параметр `requirements` у PythonVirtualenvOperator [поддерживает шаблонизацию](../02.%20astronomer-dags/jinja-templating.md), поэтому можно использовать [шаблоны Jinja](../02.%20astronomer-dags/jinja-templating.md) для передачи данных в момент выполнения. Например, можно подставлять разную версию pandas при каждом запуске задачи.
 
 ```python
 # from airflow.decorators import task
@@ -613,7 +613,7 @@ my_isolated_task = PythonVirtualenvOperator(
 
 Оператор Kubernetes (декоратор `@task.kubernetes` или KubernetesPodOperator) выполняет задачу Airflow в отдельном pod Kubernetes. Декоратор `@task.kubernetes` можно использовать для запуска произвольного Python-кода в отдельном pod на Docker-образе с установленным Python; KubernetesPodOperator запускает любой существующий Docker-образ.
 
-Для использования декоратора `@task.kubernetes` или KubernetesPodOperator нужны Docker-образ и доступ к кластеру Kubernetes. В примере ниже показано, как запустить задачу в отдельном pod в том же namespace и кластере Kubernetes, что и окружение Airflow. Подробнее: [Use the KubernetesPodOperator](https://www.astronomer.io/docs/learn/kubepod-operator) и [Run the KubernetesPodOperator on Astro](https://www.astronomer.io/docs/astro/kubernetespodoperator).
+Для использования декоратора `@task.kubernetes` или KubernetesPodOperator нужны Docker-образ и доступ к кластеру Kubernetes. В примере ниже показано, как запустить задачу в отдельном pod в том же namespace и кластере Kubernetes, что и окружение Airflow. Подробнее: [Use the KubernetesPodOperator](kubernetes-pod-operator.md) и [Run the KubernetesPodOperator on Astro](https://www.astronomer.io/docs/astro/kubernetespodoperator).
 
 **Taskflow**
 
@@ -665,7 +665,7 @@ my_isolated_task = KubernetesPodOperator(
 - Декоратор `@task.branch_virtualenv` / BranchPythonVirtualenvOperator: условная логика в новом виртуальном окружении Python.
 - Декоратор `@task.branch_external_python` / BranchExternalPythonOperator: условная логика в существующем виртуальном окружении Python.
 
-Чтобы выполнять условную логику в изолированном окружении, используйте варианты декораторов и операторов для ветвления. Подробнее о ветвлении в Airflow: [Branching in Airflow](https://www.astronomer.io/docs/learn/airflow-branch-operator).
+Чтобы выполнять условную логику в изолированном окружении, используйте варианты декораторов и операторов для ветвления. Подробнее о ветвлении в Airflow: [Branching in Airflow](../02.%20astronomer-dags/branch-operator.md).
 
 **Taskflow Epo**
 
@@ -761,7 +761,7 @@ my_isolated_task = BranchPythonVirtualenvOperator(
 
 ## Использование переменных контекста Airflow в изолированных окружениях
 
-Часть переменных [контекста Airflow](https://www.astronomer.io/docs/learn/airflow-context) можно передавать в изолированные окружения, например `logical_date` DAG run. Из-за ограничений совместимости другие объекты контекста (например, `ti`) в изолированные окружения передать нельзя. Подробнее: [документация Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#id1).
+Часть переменных [контекста Airflow](../02.%20astronomer-dags/airflow-context.md) можно передавать в изолированные окружения, например `logical_date` DAG run. Из-за ограничений совместимости другие объекты контекста (например, `ti`) в изолированные окружения передать нельзя. Подробнее: [документация Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#id1).
 
 **Taskflow Epo**
 
@@ -839,7 +839,7 @@ my_isolated_task = PythonVirtualenvOperator(
 
 ## Использование переменных Airflow в изолированных окружениях
 
-Передавать переменные Airflow в изолированные окружения можно через [шаблоны Jinja](https://www.astronomer.io/docs/learn/templating) в аргументе `op_kwargs` операторов PythonVirtualenvOperator или ExternalPythonOperator. Так можно передавать секреты в изолированное окружение; в логах они маскируются по правилам из раздела [Скрытие чувствительной информации в переменных Airflow](https://www.astronomer.io/docs/learn/airflow-variables#hide-sensitive-information-in-airflow-variables).
+Передавать переменные Airflow в изолированные окружения можно через [шаблоны Jinja](../02.%20astronomer-dags/jinja-templating.md) в аргументе `op_kwargs` операторов PythonVirtualenvOperator или ExternalPythonOperator. Так можно передавать секреты в изолированное окружение; в логах они маскируются по правилам из раздела [Скрытие чувствительной информации в переменных Airflow](https://www.astronomer.io/docs/learn/airflow-variables#hide-sensitive-information-in-airflow-variables).
 
 **Traditional Venv**
 

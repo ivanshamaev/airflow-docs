@@ -1,8 +1,8 @@
 # Введение в интерфейс Airflow (Airflow UI)
 
-[Пользовательский интерфейс (UI) Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/ui.html) — веб-центр для мониторинга, управления и отладки пайплайнов данных, обслуживаемый [API-сервером](../03.%20astronomer-infra/airflow-components.md). После существенной переработки в Airflow 3 с упором на удобство разработчиков интерфейс стал React-приложением и получил более интуитивный [плагинный](https://www.astronomer.io/docs/learn/using-airflow-plugins) интерфейс для добавления собственной функциональности.
+[Пользовательский интерфейс (UI) Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/ui.html) — веб-центр для мониторинга, управления и отладки пайплайнов данных, обслуживаемый [API-сервером](../03.%20astronomer-infra/airflow-components.md). После существенной переработки в Airflow 3 с упором на удобство разработчиков интерфейс стал React-приложением и получил более интуитивный [плагинный](../04.%20astronomer-advanced/airflow-plugins.md) интерфейс для добавления собственной функциональности.
 
-Через UI можно не только получать детальную информацию о DAG и запусках DAG, но и управлять основными элементами Airflow: [переменными](variables.md), [подключениями](connections.md) и [пулами](https://www.astronomer.io/docs/learn/airflow-pools). Можно напрямую взаимодействовать с пайплайнами: запускать DAG, выполнять [backfill](/docs/learn/rerunning-dags#backfill), очищать экземпляры задач или генерировать [события ассетов](assets.md). В UI также доступны предыдущие [версии](https://www.astronomer.io/docs/learn/airflow-dag-versioning) DAG.
+Через UI можно не только получать детальную информацию о DAG и запусках DAG, но и управлять основными элементами Airflow: [переменными](variables.md), [подключениями](connections.md) и [пулами](../04.%20astronomer-advanced/airflow-pools.md). Можно напрямую взаимодействовать с пайплайнами: запускать DAG, выполнять [backfill](../02.%20astronomer-dags/rerunning-dags.md#backfill), очищать экземпляры задач или генерировать [события ассетов](assets.md). В UI также доступны предыдущие [версии](../02.%20astronomer-dags/dag-versioning.md) DAG.
 
 В этом руководстве даётся обзор наиболее полезных возможностей и визуализаций интерфейса Airflow. Чтобы повторять примеры, можно быстро поднять локальное окружение Airflow с помощью [Astro CLI](https://www.astronomer.io/docs/astro/cli/get-started).
 
@@ -12,7 +12,7 @@
 
 Для максимальной отдачи от руководства нужно понимать:
 
-- Основные концепции Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+- Основные концепции Airflow. См. [Введение в Apache Airflow](README.md).
 - DAG в Airflow. См. [Введение в DAG Airflow](dags.md).
 
 ## Зачем нужен UI
@@ -26,7 +26,7 @@
 Интерфейс Airflow особенно важен в таких сценариях:
 
 - **Наблюдаемость** — обзор статуса DAG и задач в реальном времени. Использование видов Grid, Graph и Gantt для поиска узких мест, доступ к логам задач для разбора сбоев. При использовании [ассетов](assets.md) для расписания DAG в UI также отображаются зависимости по данным между ассетами и задачами.
-- **Операционное управление** — повседневные операции: пауза DAG, очистка задач, [backfill](/docs/learn/rerunning-dags#backfill), управление подключениями Airflow. UI делает управление пайплайнами доступным и для менее технических специалистов.
+- **Операционное управление** — повседневные операции: пауза DAG, очистка задач, [backfill](../02.%20astronomer-dags/rerunning-dags.md#backfill), управление подключениями Airflow. UI делает управление пайплайнами доступным и для менее технических специалистов.
 - **Отладка** — визуальная проверка структуры и зависимостей DAG при разработке. Просмотр отрендеренных шаблонов и XCom для диагностики проблем и ускорения разработки.
 
 > **Примечание.** Видеовведение в интерфейс Airflow см. в модуле [Airflow: UI](https://academy.astronomer.io/path/airflow-101/airflow-ui) в Astronomer Academy.
@@ -56,7 +56,7 @@
 - **Stats** — краткая сводка нагрузки: число активных DAG, выполняющихся и упавших экземпляров задач. Каждая цифра — кликабельная ссылка на предотфильтрованный список DAG.
 - **Favorites** — список избранных DAG. Добавить DAG в избранное можно по клику на звёздочку рядом с именем в представлении DAG или на странице DAG.
 - **Health** — общее состояние [компонентов Airflow](../03.%20astronomer-infra/airflow-components.md).
-- **Pool Slots** — суммарное число слотов всех настроенных [пулов](https://www.astronomer.io/docs/learn/airflow-pools) и их загрузка.
+- **Pool Slots** — суммарное число слотов всех настроенных [пулов](../04.%20astronomer-advanced/airflow-pools.md) и их загрузка.
 - **History** — сводная статистика последних запусков DAG и экземпляров задач.
 - **Asset Events** — список последних или самых старых событий ассетов.
 
@@ -105,7 +105,7 @@
 
 Две основные визуализации DAG (слева на странице DAG) — вид **Grid** с встроенной диаграммой Ганта и вид **Graph**.
 
-В сетке отображаются предыдущие запуски DAG: длительность и результат по каждому экземпляру задачи. Столбец — один запуск DAG, ячейка — экземпляр задачи в этом запуске. Цвет ячейки — статус. Маленькая иконка воспроизведения у запуска означает ручной запуск, иконка ассета — запуск по [обновлению ассета](https://astronomer.io/guides/airflow-datasets). Без иконки — запуск по расписанию.
+В сетке отображаются предыдущие запуски DAG: длительность и результат по каждому экземпляру задачи. Столбец — один запуск DAG, ячейка — экземпляр задачи в этом запуске. Цвет ячейки — статус. Маленькая иконка воспроизведения у запуска означает ручной запуск, иконка ассета — запуск по [обновлению ассета](assets.md). Без иконки — запуск по расписанию.
 
 Справа — вкладки с дополнительной информацией о выбранном в Grid или Graph DAG, запуске, задаче или экземпляре задачи.
 
@@ -185,7 +185,7 @@
 
 #### Code
 
-Вкладка **Code** — просмотр кода DAG, дата и время последнего разбора. Можно выбрать [версию DAG](https://www.astronomer.io/docs/learn/airflow-dag-versioning) и скопировать код.
+Вкладка **Code** — просмотр кода DAG, дата и время последнего разбора. Можно выбрать [версию DAG](../02.%20astronomer-dags/dag-versioning.md) и скопировать код.
 
 ![Снимок экрана: вкладка Code.](https://files.buildwithfern.com/astronomer.docs.buildwithfern.com/docs/e6c44e4c300242c8580acf002e919b28a9c8daca08a8f99ca20a762803f60c94/docs/assets/img/guides/3_1_airflow-ui_individual-dag-code.png)
 
@@ -258,7 +258,7 @@
 
 - **Connections** — просмотр и управление [подключениями Airflow](connections.md).
 - **Variables** — просмотр и управление [переменными Airflow](variables.md).
-- **Pools** — просмотр и управление [пулами Airflow](https://www.astronomer.io/docs/learn/airflow-pools).
+- **Pools** — просмотр и управление [пулами Airflow](../04.%20astronomer-advanced/airflow-pools.md).
 - **Plugins** — просмотр [плагинов Airflow](https://airflow.apache.org/docs/apache-airflow/stable/plugins.html).
 - **Providers** — просмотр установленных [провайдеров](https://registry.astronomer.io/).
 - **Config** — содержимое `airflow.cfg`.
@@ -283,7 +283,7 @@
 
 В этом руководстве дан базовый обзор часто используемых возможностей интерфейса Airflow. От 2.x к 3.x интерфейс стал проще и понятнее.
 
-> **Совет.** [Плагины Airflow](https://airflow.apache.org/docs/apache-airflow/stable/plugins.html) позволяют расширять установку. В [этом руководстве](https://www.astronomer.io/docs/learn/using-airflow-plugins) описано, как расширить UI с помощью плагинов.
+> **Совет.** [Плагины Airflow](https://airflow.apache.org/docs/apache-airflow/stable/plugins.html) позволяют расширять установку. В [этом руководстве](../04.%20astronomer-advanced/airflow-plugins.md) описано, как расширить UI с помощью плагинов.
 
 Интерфейс Airflow развивается, сообщество продолжает улучшать UX и добавлять функции. Чтобы использовать новое, стоит регулярно обновлять окружение. Идеи и помощь в разработке приветствуются в [сообществе Apache Airflow](https://github.com/apache/airflow?tab=readme-ov-file#contributing).
 

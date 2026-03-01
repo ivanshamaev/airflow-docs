@@ -30,7 +30,7 @@
 - [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html).
 - [ExternalTaskSensor](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor).
 - [TriggerDagRunOperator](https://registry.astronomer.io/providers/apache-airflow/modules/triggerdagrunoperator).
-- [Data-aware планирование с ассетами](https://www.astronomer.io/docs/learn/airflow-datasets).
+- [Data-aware планирование с ассетами](../01.%20astronomer-basic/assets.md).
 
 Ниже — когда и как использовать каждый способ и как смотреть зависимости в UI Airflow.
 
@@ -79,11 +79,11 @@ def consuming_dag():
 
 **TriggerDagRunOperator** — простой способ задать зависимость «сверху вниз»: задача в одном DAG запускает другой DAG в том же окружении Airflow. Подробнее: [TriggerDagRunOperator](https://registry.astronomer.io/providers/apache-airflow/modules/triggerdagrunoperator).
 
-Запускать нижестоящий DAG можно из любой точки вышестоящего DAG. Если у оператора задать `wait_for_completion=True`, вышестоящий DAG приостанавливается и продолжается только после завершения нижестоящего. Ожидание можно переложить на triggerer, установив `deferrable=True`: оператор станет [deferrable](https://www.astronomer.io/docs/learn/deferrable-operators), что снижает нагрузку и может уменьшить затраты.
+Запускать нижестоящий DAG можно из любой точки вышестоящего DAG. Если у оператора задать `wait_for_completion=True`, вышестоящий DAG приостанавливается и продолжается только после завершения нижестоящего. Ожидание можно переложить на triggerer, установив `deferrable=True`: оператор станет [deferrable](../04.%20astronomer-advanced/deferrable-operators.md), что снижает нагрузку и может уменьшить затраты.
 
 Типичный сценарий: вышестоящий DAG загружает тестовые данные для ML-пайплайна, обучает и тестирует модель, публикует предсказания. Если модель показывает слабый результат, TriggerDagRunOperator запускает отдельный DAG переобучения; вышестоящий DAG ждёт. После переобучения и проверки в нижестоящем DAG вышестоящий продолжается и публикует результаты новой модели.
 
-[Расписание](https://www.astronomer.io/docs/learn/scheduling-in-airflow) нижестоящего DAG не связано с запусками через TriggerDagRunOperator. Чтобы DAG запускался только этим оператором, задайте ему `schedule=None`. Зависимый DAG должен быть включён (не на паузе).
+[Расписание](../01.%20astronomer-basic/scheduling.md) нижестоящего DAG не связано с запусками через TriggerDagRunOperator. Чтобы DAG запускался только этим оператором, задайте ему `schedule=None`. Зависимый DAG должен быть включён (не на паузе).
 
 В примере ниже TriggerDagRunOperator запускает DAG с `dag_id` `dependent_dag` между двумя другими задачами. У задачи `trigger_dependent_dag` заданы `wait_for_completion=True` и `deferrable=True`, поэтому задача откладывается до завершения `dependent_dag`. После завершения этой задачи выполняется `end_task`.
 
@@ -194,7 +194,7 @@ with DAG(
 
 Например: вышестоящие задачи обновляют разные таблицы в хранилище, а один нижестоящий DAG запускает по ветке проверок качества для каждой таблицы. В начале каждой ветки ставится ExternalTaskSensor, чтобы проверки по таблице стартовали только после обновления этой таблицы.
 
-Рекомендуется использовать ExternalTaskSensor в deferrable-режиме (`deferrable=True`). Подробнее: [Deferrable-операторы](https://www.astronomer.io/docs/learn/deferrable-operators).
+Рекомендуется использовать ExternalTaskSensor в deferrable-режиме (`deferrable=True`). Подробнее: [Deferrable-операторы](../04.%20astronomer-advanced/deferrable-operators.md).
 
 В примере ниже три ExternalTaskSensor в начале трёх параллельных веток одного DAG.
 

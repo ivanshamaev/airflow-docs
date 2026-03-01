@@ -33,7 +33,7 @@
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Astro CLI. См. [Get started with Astro CLI](https://www.astronomer.io/docs/astro/cli/get-started-cli).
-- Основы Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+- Основы Airflow. См. [Введение в Apache Airflow](../01.%20astronomer-basic/README.md).
 
 ## Типы политик кластера
 

@@ -19,8 +19,8 @@
 
 Чтобы получить максимум от руководства, нужно понимать:
 
-- Управление зависимостями в Airflow. См. [Manage task and task group dependencies in Airflow](https://www.astronomer.io/docs/learn/managing-dependencies).
-- Декораторы Airflow. См. [Введение в TaskFlow API и декораторы Airflow](https://www.astronomer.io/docs/learn/airflow-decorators).
+- Управление зависимостями в Airflow. См. [Manage task and task group dependencies in Airflow](../01.%20astronomer-basic/task-dependencies.md).
+- Декораторы Airflow. См. [Введение в TaskFlow API и декораторы Airflow](../02.%20astronomer-dags/airflow-decorators.md).
 
 ## Когда использовать задачи setup/teardown
 
@@ -30,8 +30,8 @@
 
 Типичные сценарии:
 
-- Поднять хранилище в [кастомном XCom backend](https://www.astronomer.io/docs/learn/custom-xcom-backend-strategies) для данных, обрабатываемых задачами Airflow, и освободить его после того, как данные XCom больше не нужны.
-- Управлять ресурсами для [проверок качества данных](https://www.astronomer.io/docs/learn/data-quality).
+- Поднять хранилище в [кастомном XCom backend](custom-xcom-backends.md) для данных, обрабатываемых задачами Airflow, и освободить его после того, как данные XCom больше не нужны.
+- Управлять ресурсами для [проверок качества данных](../05.%20astronomer-write-dags/sql-check-operators.md).
 - Управлять вычислительными ресурсами для обучения ML-модели.
 - Управлять Spark-кластером для тяжёлых нагрузок.
 
@@ -44,12 +44,12 @@
 Поведение setup/teardown отличается от обычных задач:
 
 - Может быть setup без teardown и наоборот. Если задан только setup, в его область входит всё, что идёт после него по потоку; при очистке (clear) любой из этих задач setup тоже будет перезапущен.
-- Если teardown находится в [task group](https://www.astronomer.io/docs/learn/task-groups) и зависимость задана на группу, при проверке выполнения зависимости teardown не учитывается. Например, задача `run_after_task_group`, зависящая от группы `work_in_the_cluster`, выполнится, даже если teardown упал или ещё выполняется.
+- Если teardown находится в [task group](../02.%20astronomer-dags/task-groups.md) и зависимость задана на группу, при проверке выполнения зависимости teardown не учитывается. Например, задача `run_after_task_group`, зависящая от группы `work_in_the_cluster`, выполнится, даже если teardown упал или ещё выполняется.
 - При определении успешности DAG run Airflow по умолчанию не учитывает teardown. То есть если teardown падает последней задачей DAG, DAG всё равно считается успешным. На снимке ниже DAG run не помечается как неуспешный из-за падения `tear_down_cluster`.
 
 ![DAG успешен при падении teardown](images/airflow-setup-teardown_teardown_fail_dag_succeed.webp)
 
-Поведение можно изменить, задав `on_failure_fail_dagrun=True` в [методе `.as_teardown()`](https://www.astronomer.io/docs/learn/airflow-setup-teardown#as_setup-and-as_teardown-methods) или [декораторе `@teardown`](https://www.astronomer.io/docs/learn/airflow-setup-teardown#setup-and-teardown-decorators).
+Поведение можно изменить, задав `on_failure_fail_dagrun=True` в [методе `.as_teardown()`](setup-teardown.md) или [декораторе `@teardown`](setup-teardown.md).
 
 - Teardown без связанного setup выполняется один раз после завершения всех вышестоящих рабочих задач, независимо от их успеха или неудачи.
 - Teardown выполняется, если хотя бы один связанный setup успешно завершён и все вышестоящие задачи завершены (успешно или нет). Если все связанные setup упали или пропущены, teardown будет помечен как failed или skipped соответственно.
@@ -63,11 +63,11 @@
 
 ![DAG без setup/teardown](images/airflow-setup-teardown_nosutd_dag.webp)
 
-При такой схеме падение любой рабочей задачи приведёт к тому, что `tear_down_cluster` не выполнится. Ресурсы не будут освобождены и продолжат потреблять средства. Кроме того, задачи, зависящие от `tear_down_cluster`, тоже не запустятся, если у них нет [trigger rules](https://www.astronomer.io/docs/learn/airflow-trigger-rules) для запуска при падении вышестоящих.
+При такой схеме падение любой рабочей задачи приведёт к тому, что `tear_down_cluster` не выполнится. Ресурсы не будут освобождены и продолжат потреблять средства. Кроме того, задачи, зависящие от `tear_down_cluster`, тоже не запустятся, если у них нет [trigger rules](../01.%20astronomer-basic/trigger-rules.md) для запуска при падении вышестоящих.
 
-Преобразовать `provision_cluster` в setup, а `tear_down_cluster` в teardown можно по примерам из раздела [реализация setup/teardown](https://www.astronomer.io/docs/learn/airflow-setup-teardown#setup-teardown-implementation).
+Преобразовать `provision_cluster` в setup, а `tear_down_cluster` в teardown можно по примерам из раздела [реализация setup/teardown](setup-teardown.md).
 
-После преобразования в Grid setup-задачи отображаются стрелкой вверх, teardown — стрелкой вниз. После настройки [воркфлоу setup/teardown](https://www.astronomer.io/docs/learn/airflow-setup-teardown#creating-setup-teardown-workflows) между `provision_cluster` и `tear_down_cluster` задачи соединяются пунктиром. Задачи `worker_task_1`, `worker_task_2` и `worker_task_3` входят в область этого воркфлоу.
+После преобразования в Grid setup-задачи отображаются стрелкой вверх, teardown — стрелкой вниз. После настройки [воркфлоу setup/teardown](setup-teardown.md) между `provision_cluster` и `tear_down_cluster` задачи соединяются пунктиром. Задачи `worker_task_1`, `worker_task_2` и `worker_task_3` входят в область этого воркфлоу.
 
 ![Пример DAG с setup и teardown](images/airflow-setup-teardown_intro_dag.webp)
 
@@ -95,7 +95,7 @@
 
 Выбор способа — вопрос предпочтений.
 
-В одном DAG может быть любое количество setup и teardown. Чтобы Airflow понимал, какие setup и teardown относятся друг к другу, нужно [создать воркфлоу setup/teardown](https://www.astronomer.io/docs/learn/airflow-setup-teardown#creating-setup-teardown-workflows).
+В одном DAG может быть любое количество setup и teardown. Чтобы Airflow понимал, какие setup и teardown относятся друг к другу, нужно [создать воркфлоу setup/teardown](setup-teardown.md).
 
 ### Методы `.as_setup()` и `.as_teardown()`
 
@@ -165,7 +165,7 @@ my_teardown_task_obj = PythonOperator(
 worker_task_obj >> my_teardown_task_obj.as_teardown()
 ```
 
-После определения setup и teardown нужно [задать их воркфлоу](https://www.astronomer.io/docs/learn/airflow-setup-teardown#creating-setup-teardown-workflows), чтобы Airflow понимал, какие задачи работают с одними и теми же ресурсами.
+После определения setup и teardown нужно [задать их воркфлоу](setup-teardown.md), чтобы Airflow понимал, какие задачи работают с одними и теми же ресурсами.
 
 ### Декораторы `@setup` и `@teardown`
 
@@ -201,7 +201,7 @@ def my_teardown_task():
 worker_task() >> my_teardown_task()
 ```
 
-После определения setup и teardown нужно [создать их воркфлоу](https://www.astronomer.io/docs/learn/airflow-setup-teardown#creating-setup-teardown-workflows), чтобы Airflow понимал, какие задачи работают с одними и теми же ресурсами.
+После определения setup и teardown нужно [создать их воркфлоу](setup-teardown.md), чтобы Airflow понимал, какие задачи работают с одними и теми же ресурсами.
 
 ### Создание воркфлоу setup/teardown
 
@@ -213,7 +213,7 @@ Airflow должен понимать, какие setup и teardown связан
 
 При использовании декораторов `@setup` и `@teardown` аргумент `setups` использовать нельзя.
 
-В одном DAG может быть несколько наборов setup/teardown — и [параллельных](https://www.astronomer.io/docs/learn/airflow-setup-teardown#parallel-setup-teardown-workflows), и [вложенных](https://www.astronomer.io/docs/learn/airflow-setup-teardown#nested-setup-teardown-workflows).
+В одном DAG может быть несколько наборов setup/teardown — и [параллельных](setup-teardown.md), и [вложенных](setup-teardown.md).
 
 Количество setup, teardown и рабочих задач в области не ограничено.
 
@@ -221,7 +221,7 @@ Airflow должен понимать, какие setup и teardown связан
 
 Связать setup и teardown можно несколькими способами.
 
-С декоратором `@task` можно использовать `.as_teardown()` и аргумент `setups`, чтобы указать, какие setup входят в один воркфлоу с teardown. Альтернатива — [декораторы `@setup` и `@teardown`](https://www.astronomer.io/docs/learn/airflow-setup-teardown#setup-and-teardown-decorators) и связь через прямые зависимости.
+С декоратором `@task` можно использовать `.as_teardown()` и аргумент `setups`, чтобы указать, какие setup входят в один воркфлоу с teardown. Альтернатива — [декораторы `@setup` и `@teardown`](setup-teardown.md) и связь через прямые зависимости.
 
 ![Связи setup/teardown (декораторы)](images/airflow-setup-teardown-relationships_decorators_1.webp)
 
@@ -551,7 +551,7 @@ outer_setup_obj >> outer_worker_3() >> outer_teardown_obj
 
 ### Задача после task group
 
-Если teardown входит в [task group](https://www.astronomer.io/docs/learn/task-groups) и зависимость задана на группу, при проверке выполнения зависимости teardown не учитывается.
+Если teardown входит в [task group](../02.%20astronomer-dags/task-groups.md) и зависимость задана на группу, при проверке выполнения зависимости teardown не учитывается.
 
 ![Задача после task group](images/airflow-setup-teardown-task_after_taskgroup.webp)
 
@@ -575,7 +575,7 @@ my_setup_task >> [my_worker_task_1_obj >> my_worker_task_2_obj] >> my_worker_tas
 - `delete_csv` — связанная teardown-задача, удаляет ресурс (CSV-файл).
 - `fetch_data` — setup, получает данные из удалённого источника и передаёт их для записи в CSV.
 - `write_to_csv` — setup, записывает данные в CSV.
-- `create_csv` — setup, создаёт CSV-файл в каталоге из [DAG param](https://www.astronomer.io/docs/learn/airflow-params).
+- `create_csv` — setup, создаёт CSV-файл в каталоге из [DAG param](../02.%20astronomer-dags/airflow-params.md).
 
 В DAG есть 3 задачи вне области setup/teardown:
 

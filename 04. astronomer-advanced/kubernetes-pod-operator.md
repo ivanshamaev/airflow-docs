@@ -31,7 +31,7 @@
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Основы Kubernetes. См. [Kubernetes Documentation](https://kubernetes.io/docs/home/).
-- Операторы Airflow. См. [Операторы 101](https://www.astronomer.io/docs/learn/what-is-an-operator).
+- Операторы Airflow. См. [Операторы 101](../01.%20astronomer-basic/operators.md).
 
 ## Предварительные требования
 
@@ -228,7 +228,7 @@ KubernetesPodOperator запускает любой переданный ему 
 
 ### Сравнение KubernetesPodOperator и Kubernetes executor
 
-[Исполнители (executors)](https://www.astronomer.io/docs/learn/airflow-executors-explained) определяют, как выполняются задачи Airflow. И Kubernetes executor, и KubernetesPodOperator динамически создают и завершают Pod’ы для выполнения задач. Kubernetes executor влияет на выполнение **всех** задач в инстансе Airflow. KubernetesPodOperator запускает **только свою** задачу в отдельном Pod с собственной конфигурацией и не влияет на остальные задачи.
+[Исполнители (executors)](../03.%20astronomer-infra/executors.md) определяют, как выполняются задачи Airflow. И Kubernetes executor, и KubernetesPodOperator динамически создают и завершают Pod’ы для выполнения задач. Kubernetes executor влияет на выполнение **всех** задач в инстансе Airflow. KubernetesPodOperator запускает **только свою** задачу в отдельном Pod с собственной конфигурацией и не влияет на остальные задачи.
 
 Основные отличия:
 
@@ -296,7 +296,7 @@ KubernetesPodOperator(
 - Контекст кластера из предоставленного файла KubeConfig.
 - Файл KubeConfig — путь к файлу или данные в формате JSON.
 
-Если Airflow не запущен в Kubernetes или нужно отправлять Pod в другой кластер, отличный от того, где работает Airflow, можно создать [подключение](https://www.astronomer.io/docs/learn/connections) типа Kubernetes Cluster. Оно использует [Kubernetes hook](https://registry.astronomer.io/providers/kubernetes/modules/kuberneteshook) для доступа к [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) другого кластера. Подключение передаётся в KubernetesPodOperator через аргумент `kubernetes_conn_id`.
+Если Airflow не запущен в Kubernetes или нужно отправлять Pod в другой кластер, отличный от того, где работает Airflow, можно создать [подключение](../01.%20astronomer-basic/connections.md) типа Kubernetes Cluster. Оно использует [Kubernetes hook](https://registry.astronomer.io/providers/kubernetes/modules/kuberneteshook) для доступа к [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) другого кластера. Подключение передаётся в KubernetesPodOperator через аргумент `kubernetes_conn_id`.
 
 При `in_cluster=True` для подключения к кластеру достаточно указать аргумент `namespace` у KubernetesPodOperator. Pod будет запущен в том же кластере Kubernetes, что и инстанс Airflow.
 
@@ -329,7 +329,7 @@ KubernetesPodOperator(
 
 Декоратор `@task.kubernetes` — альтернатива классическому KubernetesPodOperator при запуске Python-скриптов в отдельном Pod Kubernetes. Docker-образ, передаваемый в `@task.kubernetes`, должен уметь выполнять Python-скрипты.
 
-Как и у обычных функций с декоратором `@task`, в Python-скрипт, выполняющийся в выделенном Pod, можно передавать XCom. Если в параметрах декоратора задано `do_xcom_push=True`, возвращаемое значение функции попадает в XCom. Подробнее о декораторах: [Введение в декораторы Airflow](https://www.astronomer.io/docs/learn/airflow-decorators).
+Как и у обычных функций с декоратором `@task`, в Python-скрипт, выполняющийся в выделенном Pod, можно передавать XCom. Если в параметрах декоратора задано `do_xcom_push=True`, возвращаемое значение функции попадает в XCom. Подробнее о декораторах: [Введение в декораторы Airflow](../02.%20astronomer-dags/airflow-decorators.md).
 
 Astronomer рекомендует использовать декоратор `@task.kubernetes` вместо KubernetesPodOperator при работе с XCom и Python-скриптами в отдельном Pod Kubernetes.
 

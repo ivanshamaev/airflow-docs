@@ -8,7 +8,7 @@
 
 Чтобы получить максимум от руководства, нужно понимать:
 
-- Ассеты Airflow. См. [Ассеты и data-aware планирование в Airflow](https://www.astronomer.io/docs/learn/airflow-datasets).
+- Ассеты Airflow. См. [Ассеты и data-aware планирование в Airflow](../01.%20astronomer-basic/assets.md).
 
 ## Концепции
 
@@ -16,14 +16,14 @@
 
 - **AssetEvent:** объект **Asset** в Airflow представляет конкретную или абстрактную сущность данных (файл, таблица в БД или сущность без привязки к данным). **AssetEvent** — одно обновление ассета. В контексте event-driven планирования AssetEvent соответствует одному обнаруженному сообщению в очереди.
 - **AssetWatcher:** класс в Airflow, который следит за одним или несколькими триггерами. При срабатывании триггера (`TriggerEvent`) AssetWatcher обновляет связанный ассет, создавая AssetEvent. Полезная нагрузка триггера попадает в словарь `extra` AssetEvent.
-- **Trigger (триггер):** асинхронная Python-функция в компоненте [triggerer](https://www.astronomer.io/docs/learn/airflow-components) Airflow. Триггеры, наследующие `BaseEventTrigger`, можно использовать в AssetWatcher для event-driven планирования. Триггер опрашивает очередь сообщений; при появлении нового сообщения создаётся TriggerEvent, сообщение удаляется из очереди.
+- **Trigger (триггер):** асинхронная Python-функция в компоненте [triggerer](../03.%20astronomer-infra/airflow-components.md) Airflow. Триггеры, наследующие `BaseEventTrigger`, можно использовать в AssetWatcher для event-driven планирования. Триггер опрашивает очередь сообщений; при появлении нового сообщения создаётся TriggerEvent, сообщение удаляется из очереди.
 - **Message queue (очередь сообщений):** сервис обмена сообщениями между системами. Примеры: Amazon SQS, RabbitMQ, Apache Kafka. В Airflow 3.0 event-driven планирование поддерживается для Amazon SQS; поддержка других очередей планируется в следующих версиях.
 - **Event-driven scheduling:** подвид data-aware планирования, при котором DAG запускается по сообщениям в очереди. Сообщение в очереди порождается событием вне Airflow.
-- **Data-aware scheduling:** планирование DAG по обновлениям ассетов. Помимо event-driven, ассеты могут обновляться успешно завершёнными задачами в том же инстансе Airflow, вручную через UI или через [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html). См. [Ассеты и data-aware планирование в Airflow](https://www.astronomer.io/docs/learn/airflow-datasets).
+- **Data-aware scheduling:** планирование DAG по обновлениям ассетов. Помимо event-driven, ассеты могут обновляться успешно завершёнными задачами в том же инстансе Airflow, вручную через UI или через [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html). См. [Ассеты и data-aware планирование в Airflow](../01.%20astronomer-basic/assets.md).
 
 ## Когда использовать event-driven планирование
 
-[Data-aware планирование](https://www.astronomer.io/docs/learn/airflow-datasets) (базовое и расширенное) подходит, когда обновления ассетов происходят внутри Airflow или через [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html). В ряде сценариев DAG нужно запускать по событиям во внешних системах. Два типичных паттерна:
+[Data-aware планирование](../01.%20astronomer-basic/assets.md) (базовое и расширенное) подходит, когда обновления ассетов происходят внутри Airflow или через [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html). В ряде сценариев DAG нужно запускать по событиям во внешних системах. Два типичных паттерна:
 
 1. **События IoT-датчиков:** устройство IoT отправляет событие датчика в очередь сообщений. DAG в Airflow планируется по этому сообщению и обрабатывает его (например, проверяет значение). При необходимости публикуется алерт в другую очередь.
 2. **Доставка данных во внешнюю систему:** данные попадают во внешнюю систему (например, вручную экспертом), в очередь отправляется событие «данные готовы». DAG в Airflow планируется по этому сообщению и запускает ETL-пайплайн для обработки данных во внешней системе.
@@ -97,7 +97,7 @@ def event_driven_dag():
 event_driven_dag()
 ```
 
-DAG будет запускаться при каждом обновлении ассета `sqs_queue_asset`. У ассета один AssetWatcher `sqs_watcher` с одним MessageQueueTrigger, который опрашивает указанную очередь SQS. Задача `process_message` получает triggering asset events из [контекста Airflow](https://www.astronomer.io/docs/learn/airflow-context) и выводит тело сообщения. Задачу можно заменить на свою логику обработки сообщения.
+DAG будет запускаться при каждом обновлении ассета `sqs_queue_asset`. У ассета один AssetWatcher `sqs_watcher` с одним MessageQueueTrigger, который опрашивает указанную очередь SQS. Задача `process_message` получает triggering asset events из [контекста Airflow](../02.%20astronomer-dags/airflow-context.md) и выводит тело сообщения. Задачу можно заменить на свою логику обработки сообщения.
 
 ![Паттерны event-driven планирования](images/3-0-airflow-event-driven-scheduling_patterns.png)
 
@@ -146,7 +146,7 @@ def event_driven_dag():
 event_driven_dag()
 ```
 
-DAG запускается при обновлении ассета `kafka_topic_asset`. Ассет использует один AssetWatcher `kafka_watcher` с MessageQueueTrigger, опрашивающим указанный топик Kafka. Задача `process_message` получает triggering asset events из [контекста Airflow](https://www.astronomer.io/docs/learn/airflow-context) и выводит данные события. Задачу можно заменить на свою логику обработки.
+DAG запускается при обновлении ассета `kafka_topic_asset`. Ассет использует один AssetWatcher `kafka_watcher` с MessageQueueTrigger, опрашивающим указанный топик Kafka. Задача `process_message` получает triggering asset events из [контекста Airflow](../02.%20astronomer-dags/airflow-context.md) и выводит данные события. Задачу можно заменить на свою логику обработки.
 
 3. **Создайте файл `kafka_trigger.py`** в папке `include` проекта. Функция будет применена к сообщению Kafka при получении и вернёт значение для обработки в DAG:
 

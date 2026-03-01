@@ -18,7 +18,7 @@
 ## Необходимая база
 
 - Основы Python. См. [Python Documentation](https://docs.python.org/3/tutorial/index.html).
-- Основы Airflow. См. [Introduction to Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+- Основы Airflow. См. [Introduction to Apache Airflow](../01.%20astronomer-basic/README.md).
 
 ## Требования
 

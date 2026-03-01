@@ -4,9 +4,9 @@
 
 Другие типичные причины обращаться к контексту:
 
-- Нужно явно отправлять и получать значения в [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks#xcom) с произвольным ключом.
-- Нужно использовать [логическую дату](https://www.astronomer.io/docs/learn/scheduling-in-airflow#scheduling-concepts) DAG run в задаче, например в имени файла.
-- Нужно использовать [параметры уровня DAG](https://www.astronomer.io/docs/learn/airflow-params) в задачах.
+- Нужно явно отправлять и получать значения в [XCom](passing-data-between-tasks.md) с произвольным ключом.
+- Нужно использовать [логическую дату](../01.%20astronomer-basic/scheduling.md) DAG run в задаче, например в имени файла.
+- Нужно использовать [параметры уровня DAG](airflow-params.md) в задачах.
 
 В этом документе — какие данные хранятся в контексте Airflow и как к ним обращаться.
 
@@ -16,16 +16,16 @@
 
 - Операторы Airflow. См. [Что такое оператор?](../01.%20astronomer-basic/operators.md).
 - Основы Python. См. [документацию Python](https://docs.python.org/3/tutorial/index.html).
-- Основы Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+- Основы Airflow. См. [Введение в Apache Airflow](../01.%20astronomer-basic/README.md).
 
 ## Доступ к контексту Airflow
 
 Контекст доступен во всех задачах Airflow. Получить из него данные можно так:
 
 - Обратиться к аргументу **context** в методе `.execute` любого традиционного или кастомного оператора.
-- Использовать [Jinja-шаблоны](https://www.astronomer.io/docs/learn/templating) в традиционных операторах Airflow.
-- Передать аргумент **context** в функцию с декоратором `@asset`. См. [Ассеты и data-aware планирование](https://www.astronomer.io/docs/learn/airflow-datasets).
-- Передать аргумент **\*\*context** в функцию, используемую в [задаче с декоратором `@task`](https://www.astronomer.io/docs/learn/airflow-decorators) или в [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/versions/latest/modules/PythonOperator).
+- Использовать [Jinja-шаблоны](jinja-templating.md) в традиционных операторах Airflow.
+- Передать аргумент **context** в функцию с декоратором `@asset`. См. [Ассеты и data-aware планирование](../01.%20astronomer-basic/assets.md).
+- Передать аргумент **\*\*context** в функцию, используемую в [задаче с декоратором `@task`](airflow-decorators.md) или в [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/versions/latest/modules/PythonOperator).
 
 Обращаться к словарю контекста Airflow вне задачи нельзя.
 
@@ -62,7 +62,7 @@ print_context = PythonOperator(
 
 ### Получение контекста через Jinja-шаблоны
 
-К многим полям контекста можно обратиться через [Jinja-шаблоны](https://www.astronomer.io/docs/learn/templating). Список параметров оператора, поддерживающих шаблоны, хранится в атрибуте `.template_fields`.
+К многим полям контекста можно обратиться через [Jinja-шаблоны](jinja-templating.md). Список параметров оператора, поддерживающих шаблоны, хранится в атрибуте `.template_fields`.
 
 Например, логическую дату DAG run в формате `YYYY-MM-DD` можно подставить в параметр `bash_command` BashOperator шаблоном `{{ ds }}`:
 
@@ -75,7 +75,7 @@ print_logical_date = BashOperator(
 )
 ```
 
-Часто Jinja используют, чтобы подставить в параметр традиционной задачи значение из [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks#xcom). В примере ниже первая задача `return_greeting` кладёт в XCom строку "Hello", вторая `greet_friend` через шаблон достаёт это значение из объекта `ti` (task instance) контекста и выводит в лог `Hello friend! :)`.
+Часто Jinja используют, чтобы подставить в параметр традиционной задачи значение из [XCom](passing-data-between-tasks.md). В примере ниже первая задача `return_greeting` кладёт в XCom строку "Hello", вторая `greet_friend` через шаблон достаёт это значение из объекта `ti` (task instance) контекста и выводит в лог `Hello friend! :)`.
 
 ```python
 from airflow.providers.standard.operators.bash import BashOperator
@@ -95,11 +95,11 @@ greet_friend = BashOperator(
 return_greeting() >> greet_friend
 ```
 
-Актуальный список доступных шаблонов: [документация Airflow](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html). Передача данных между задачами через XCom: [Pass data between tasks](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks).
+Актуальный список доступных шаблонов: [документация Airflow](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html). Передача данных между задачами через XCom: [Pass data between tasks](passing-data-between-tasks.md).
 
 ### Получение контекста в кастомных операторах
 
-В традиционном операторе контекст всегда передаётся в метод `.execute` аргументом **context**. В [кастомном операторе](https://www.astronomer.io/docs/learn/airflow-importing-custom-hooks-operators) в методе `execute` нужно объявить этот аргумент, как в примере:
+В традиционном операторе контекст всегда передаётся в метод `.execute` аргументом **context**. В [кастомном операторе](custom-hooks-operators.md) в методе `execute` нужно объявить этот аргумент, как в примере:
 
 ```python
 from airflow.sdk.bases.operator import BaseOperator
@@ -119,7 +119,7 @@ class PrintDAGIDOperator(BaseOperator):
 
 ### ti / task_instance
 
-Ключ **ti** (или **task_instance**) содержит [объект TaskInstance](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/taskinstance/index.html). Чаще всего используют атрибуты `.xcom_pull` и `.xcom_push` для работы с [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks).
+Ключ **ti** (или **task_instance**) содержит [объект TaskInstance](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/taskinstance/index.html). Чаще всего используют атрибуты `.xcom_pull` и `.xcom_push` для работы с [XCom](passing-data-between-tasks.md).
 
 В следующем DAG контекст используется для явной передачи данных между задачами через `context["ti"].xcom_push(...)` и `context["ti"].xcom_pull(...)`:
 
@@ -170,7 +170,7 @@ context_and_xcom()
 
 Часто контекст нужен, чтобы получить данные о планировании DAG. Типичный приём — использовать метку времени логической даты в именах файлов, создаваемых DAG, чтобы у каждого DAG run был свой файл.
 
-В примере ниже для каждого DAG run создаётся текстовый файл в папке `include` с меткой времени в имени в формате `YYYY-MM-DDTHH:MM:SS+00:00`. Список ключей контекста, связанных с временем: [Templates reference](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html). Подстановка этих значений в шаблонируемые параметры традиционных операторов: [Jinja templating](https://www.astronomer.io/docs/learn/templating).
+В примере ниже для каждого DAG run создаётся текстовый файл в папке `include` с меткой времени в имени в формате `YYYY-MM-DDTHH:MM:SS+00:00`. Список ключей контекста, связанных с временем: [Templates reference](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html). Подстановка этих значений в шаблонируемые параметры традиционных операторов: [Jinja templating](jinja-templating.md).
 
 ```python
 from airflow.sdk import task
@@ -209,11 +209,11 @@ def print_param(**context):
     print(context["params"]["my_favorite_param"])
 ```
 
-Подробнее о params: [Airflow params guide](https://www.astronomer.io/docs/learn/airflow-params).
+Подробнее о params: [Airflow params guide](airflow-params.md).
 
 ### var
 
-Ключ **var** даёт доступ ко всем [переменным Airflow](https://www.astronomer.io/docs/learn/airflow-variables) инстанса. Обычно это пары ключ–значение для редко меняющихся данных уровня инстанса.
+Ключ **var** даёт доступ ко всем [переменным Airflow](../01.%20astronomer-basic/variables.md) инстанса. Обычно это пары ключ–значение для редко меняющихся данных уровня инстанса.
 
 ```python
 from airflow.sdk import task
