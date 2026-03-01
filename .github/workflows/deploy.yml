@@ -31,7 +31,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install MkDocs and Material theme
-        run: pip install mkdocs-material
+        run: pip install mkdocs-material, mkdocs-glightbox
 
       - name: Set site_url for project page
         run: |
