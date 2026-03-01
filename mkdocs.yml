@@ -132,6 +132,13 @@ nav:
     - Операторы Cosmos: "06. dbt/getting-started-operators.md"
 
   - "09. Прочее":
+    - Менеджер пакетов (uv):
+      - Оглавление: "09. others/package-manager/README.md"
+      - Введение в uv: "09. others/package-manager/uv-introduction.md"
+      - Установка uv: "09. others/package-manager/installation.md"
+      - Возможности uv: "09. others/package-manager/uv-features.md"
+      - Получение помощи: "09. others/package-manager/uv-help.md"
+      - Туториал Python UV (DataCamp): "09. others/package-manager/python-uv-tutorial.md"
     - Linter (Ruff):
       - Оглавление: "09. others/linter/README.md"
       - Установка Ruff: "09. others/linter/installation.md"
