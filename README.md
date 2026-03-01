@@ -1,80 +1,40 @@
-# airflow-docs
+# Airflow Docs (RU)
 
-Русский перевод документации **Apache Airflow®** в формате Markdown. Структура ориентирована на разделы сайта [Astronomer.io Docs](https://www.astronomer.io/docs/learn/). Для личного использования и размещения на GitHub.
+Неофициальный русский перевод документации **Apache Airflow®** и [Astronomer Learn](https://www.astronomer.io/docs/learn/) в Markdown. Для личного использования и GitHub.
 
-## Телеграм канал
-Подписывайтесь на телеграм канал [@data_engineer_path](https://t.me/data_engineer_path)
+---
 
-## Структура документов
+## Содержание сайта
 
-### 01. Airflow Concepts: Basics (Astronomer)
+| Раздел | Описание |
+|--------|----------|
+| **[01. Basics](01.%20astronomer-basic/README.md)** | Интерфейс, операторы, DAG, планирование, сенсоры, Connections, Variables, trigger rules |
+| **[02. DAGs](02.%20astronomer-dags/README.md)** | Контекст, декораторы, params, BranchOperator, XCom, task groups, Jinja, отладка, best practices |
+| **[03. Инфраструктура](03.%20astronomer-infra/README.md)** | Компоненты Airflow, БД, executors (Astro, K8s, Celery), масштабирование |
+| **[04. Продвинутое](04.%20astronomer-advanced/README.md)** | Политики кластера, пуллы, deferrable, event-driven, Human-in-the-loop, K8s Pod Operator, setup/teardown |
+| **[05. Написание DAG](05.%20astronomer-write-dags/README.md)** | Object Storage, DAG Docs, DAG Factory, SQL checks, разработка в PyCharm/VS Code |
 
-Основы Airflow: интерфейс, операторы, планирование, переменные, подключения.
+В каждом разделе — оглавление и ссылки на все страницы.
 
-- **[01. astronomer-basic/](01.%20astronomer-basic/)** — оглавление раздела
-- Темы: Airflow UI, ассеты, BashOperator, Connections, DAG, выполнение SQL, Hooks, управление кодом, операторы, планирование, сенсоры, зависимости задач, trigger rules, переменные.
+---
 
+## Телеграм
 
-### 02. Airflow DAGs (Astronomer)
+[@data_engineer_path](https://t.me/data_engineer_path)
 
-Написание и отладка DAG: контекст, декораторы, параметры, ветвление, XCom, тесты.
+---
 
-- **[02. astronomer-dags/](02.%20astronomer-dags/)** — оглавление раздела
-- Темы: контекст Airflow, декораторы, уведомления, params, BranchOperator, cross-DAG зависимости, кастомные хуки и операторы, лучшие практики, параметры DAG, версионирование, отладка, динамические задачи, Jinja-шаблоны, передача данных между задачами, повторный запуск, task groups.
+## Сайт (GitHub Pages)
 
+Сборка: **MkDocs** + тема **Material** (боковое меню, поиск). Деплой при пуше в `main` через GitHub Actions.
 
-### 03. Airflow: инфраструктура (Astronomer)
+- **URL:** `https://<владелец>.github.io/airflow-docs/` (включите **Settings → Pages → Source: GitHub Actions**).
+- **Локально:** `pip install mkdocs-material && mkdocs serve` → http://127.0.0.1:8000
 
-Компоненты Airflow, метаданные БД, исполнители, масштабирование.
-
-- **[03. astronomer-infra/](03.%20astronomer-infra/)** — оглавление раздела
-- Темы: компоненты (Scheduler, API server, DAG processor, Triggerer, БД), метаданные БД, executors (Astro, Kubernetes, Celery, Local), масштабирование воркеров.
-
-
-### 04. Airflow: продвинутые темы (Astronomer)
-
-Политики кластера, MLOps, плагины, пуллы, XCom backend, deferrable, event-driven, Human-in-the-loop, изолированные окружения, KubernetesPodOperator, логирование, мультиязычность, динамические DAG, setup/teardown, общий код, синхронное выполнение, тестирование.
-
-- **[04. astronomer-advanced/](04.%20astronomer-advanced/)** — оглавление раздела
-
-
-### 05. Airflow: написание DAG (Astronomer)
-
-Практики написания DAG и локальная разработка.
-
-- **[05. astronomer-write-dags/](05.%20astronomer-write-dags/)** — оглавление раздела
-- Темы: Airflow Object Storage, документирование DAG, DAG Factory (YAML), разработка в PyCharm, SQL check operators (data quality), разработка в VS Code.
-
-
-## Документация как сайт (GitHub Pages)
-
-Репозиторий настроен на сборку и публикацию сайта документации с **боковым меню** и контентом справа.
-
-- **Стек:** [MkDocs](https://www.mkdocs.org/) + тема [Material](https://squidfunk.github.io/mkdocs-material/).
-- **Деплой:** при пуше в `main`/`master` GitHub Actions собирает сайт и публикует его на GitHub Pages.
-- **Адрес сайта:** `https://<владелец-репо>.github.io/airflow-docs/` (после первого деплоя включите в настройках репозитория: **Settings → Pages → Source: GitHub Actions**).
-
-Локальный просмотр и правки:
-
-```bash
-pip install mkdocs-material
-mkdocs serve
-```
-
-Откройте в браузере http://127.0.0.1:8000 — слева меню, справа содержание страницы.
-
-Чтобы сайт открывался по адресу **airflow-docs.github.io**, создайте организацию `airflow-docs` и репозиторий `airflow-docs.github.io`, затем перенесите туда контент и workflow (и при необходимости задайте `site_url` в `mkdocs.yml`).
+---
 
 ## Использование
 
-- Читать в любом Markdown-редакторе или на GitHub (навигация по ссылкам между файлами).
-- Исходные тексты: [Apache Airflow Documentation](https://airflow.apache.org/docs/), [Astronomer Learn](https://www.astronomer.io/docs/learn/). Перевод неофициальный.
+Читать в Markdown-редакторе или на GitHub; навигация по ссылкам между файлами. Оригинал: [Airflow Docs](https://airflow.apache.org/docs/), [Astronomer Learn](https://www.astronomer.io/docs/learn/).
 
-## Оригинальная документация
-
-- [Documentation | Apache Airflow](https://airflow.apache.org/docs/)
-- [Astronomer.io Docs — Learn](https://www.astronomer.io/docs/learn/)
-
-## Лицензия
-
-Apache Airflow — проект Apache Software Foundation. Репозиторий — неофициальный перевод документации для личного использования.
+**Лицензия:** Apache Airflow — Apache Software Foundation. Репозиторий — неофициальный перевод для личного использования.
