@@ -122,6 +122,15 @@ nav:
     - "SQL check operators": "05. astronomer-write-dags/sql-check-operators.md"
     - "VS Code: локальная разработка": "05. astronomer-write-dags/vscode-local-dev.md"
 
+  - "06. dbt":
+    - Оглавление: "06. dbt/README.md"
+    - Airflow и dbt: "06. dbt/airflow-dbt.md"
+    - Cosmos на Astro (Getting Started): "06. dbt/astro-getting-started.md"
+    - Cosmos на open-source Airflow: "06. dbt/getting-started-open-source.md"
+    - Режимы выполнения (Execution Modes): "06. dbt/execution-modes.md"
+    - Режим Docker: "06. dbt/getting-started-docker.md"
+    - Операторы Cosmos: "06. dbt/getting-started-operators.md"
+
   - "09. Прочее":
     - Pydantic:
       - Оглавление Pydantic: "09. others/Pydantic/README.md"
