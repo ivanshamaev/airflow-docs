@@ -49,7 +49,7 @@
 
 Представление **Home** — стартовая страница Airflow и общий дашборд всего окружения. На ней виден обзор статуса пайплайнов и состояния системы, чтобы быстро оценить экземпляр Airflow.
 
-![Снимок экрана: представление Home в Airflow UI с дашбордом.](https://files.buildwithfern.com/astronomer.docs.buildwithfern.com/docs/96993d666d2d685fdfa1f45ebb97db744837c0e04119315216f7156bdd507992/docs/assets/img/guides/3_1_airflow-ui_home-view.png)
+![Снимок экрана: представление Home в Airflow UI с дашбордом.](images/3_1_airflow-ui_home-view.png)
 
 Представление Home состоит из нескольких виджетов:
 
@@ -95,7 +95,7 @@
 
 По нажатию **Trigger** открывается диалог: можно запустить один запуск DAG или операцию [backfill](../02.%20astronomer-dags/rerunning-dags.md). В обоих случаях в блоке **Advanced options** доступны дополнительные настройки. Для [backfill](../02.%20astronomer-dags/rerunning-dags.md) задаётся диапазон дат и один из трёх вариантов переобработки.
 
-![Снимок экрана: диалог backfill.](https://files.buildwithfern.com/astronomer.docs.buildwithfern.com/docs/e2c85bf391615a06ab2c9f88d9a1cbc1880e98ce27a9addc89aec3471280a52/docs/assets/img/guides/3_1_airflow-ui_individual-dag-backfill.png)
+![Снимок экрана: диалог backfill.](images/3_1_airflow-ui_individual-dag-backfill.png)
 
 Можно задать, идёт ли backfill в обратном направлении и к скольким активным запускам он применяется. Во время backfill вверху страницы DAG отображается полоса прогресса. Запуски, созданные backfill, в сетке помечаются отдельной иконкой.
 
@@ -193,7 +193,7 @@
 
 Вкладка **Details** — метаданные DAG: ID, описание, часовой пояс, файл, время последнего разбора, информация о последней версии, start time, concurrency, max active runs/tasks, catchup, params и т.д.
 
-![Снимок экрана: вкладка Details.](https://files.buildwithfern.com/astronomer.docs.buildwithfern.com/docs/f5678eb5e7721368a67484906b1dc788a9b86aca3a714999814e42cc9314acb/docs/assets/img/guides/3_1_airflow-ui_individual-dag-details.png)
+![Снимок экрана: вкладка Details.](images/3_1_airflow-ui_individual-dag-details.png)
 
 ### Dag run
 
