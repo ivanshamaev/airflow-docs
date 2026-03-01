@@ -17,7 +17,7 @@
 | **[04. Продвинутое](04.%20astronomer-advanced/README.md)** | Политики кластера, пуллы, deferrable, event-driven, Human-in-the-loop, K8s Pod Operator, setup/teardown |
 | **[05. Написание DAG](05.%20astronomer-write-dags/README.md)** | Object Storage, DAG Docs, DAG Factory, SQL checks, разработка в PyCharm/VS Code |
 | **[06. dbt](06.%20dbt/README.md)** | Интеграция dbt Core с Airflow (Cosmos), туториал, DbtTaskGroup, альтернативы |
-| **[09. Прочее](09.%20others/)** | **[Pydantic](09.%20others/Pydantic/README.md)** — модели, поля, типы, валидация из файлов, запросы, очереди, БД |
+| **[09. Прочее](09.%20others/)** | **[Pydantic](09.%20others/Pydantic/README.md)** — модели, поля, типы, валидация из файлов, запросы, очереди, БД; **[Ruff](09.%20others/linter/README.md)** — туториал по линтеру и форматтеру |
 
 В каждом разделе — оглавление и ссылки на все страницы.
 

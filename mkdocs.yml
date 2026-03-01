@@ -132,6 +132,13 @@ nav:
     - Операторы Cosmos: "06. dbt/getting-started-operators.md"
 
   - "09. Прочее":
+    - Linter (Ruff):
+      - Оглавление: "09. others/linter/README.md"
+      - Установка Ruff: "09. others/linter/installation.md"
+      - Туториал Ruff: "09. others/linter/ruff-tutorial.md"
+      - Линтер Ruff: "09. others/linter/ruff-linter.md"
+      - Форматтер Ruff: "09. others/linter/ruff-formatter.md"
+      - Правила Airflow (AIR): "09. others/linter/airflow-rules.md"
     - Pydantic:
       - Оглавление Pydantic: "09. others/Pydantic/README.md"
       - Добро пожаловать в Pydantic: "09. others/Pydantic/welcome-to-pydantic.md"
