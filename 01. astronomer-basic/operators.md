@@ -11,7 +11,7 @@
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Основы Python. См. [Python Documentation](https://docs.python.org/3/tutorial/index.html).
-- Основные концепции Airflow. См. [Введение в Apache Airflow](README.md).
+- Основные концепции Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Основы операторов
 
@@ -47,7 +47,7 @@ my_task = SQLExecuteQueryOperator(
 )
 ```
 
-**KubernetesPodOperator** — выполняет задачу, заданную Docker-образом, в Pod в Kubernetes. См. [Use the KubernetesPodOperator](../04.%20astronomer-advanced/kubernetes-pod-operator.md).
+**KubernetesPodOperator** — выполняет задачу, заданную Docker-образом, в Pod в Kubernetes. См. [Use the KubernetesPodOperator](https://www.astronomer.io/docs/learn/kubepod-operator).
 
 ```python
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
@@ -93,8 +93,8 @@ my_task = PythonOperator(
 Аргументы **BaseOperator** можно передавать во все операторы. Наиболее частые:
 
 - **execution_timeout**: максимальное время выполнения задачи. Необязательный, по умолчанию `None`. Рекомендуется задавать, чтобы задачи не выполнялись бесконечно.
-- **pool**: имя пула для задачи. Необязательный, по умолчанию `None`. См. [Пулы Airflow](../04.%20astronomer-advanced/airflow-pools.md).
-- **retries**: число повторных попыток при сбое. Необязательный, по умолчанию 0. См. [Повторный запуск DAG и задач](../02.%20astronomer-dags/rerunning-dags.md).
+- **pool**: имя пула для задачи. Необязательный, по умолчанию `None`. См. [Пулы Airflow](https://www.astronomer.io/docs/learn/airflow-pools).
+- **retries**: число повторных попыток при сбое. Необязательный, по умолчанию 0. См. [Повторный запуск DAG и задач](https://www.astronomer.io/docs/learn/rerunning-dags#automatically-retry-tasks).
 - **task_id**: уникальный идентификатор задачи. Обязателен для всех операторов.
 
 Эти и другие аргументы BaseOperator (кроме `task_id`, который должен быть уникален у каждой задачи) можно задать на уровне DAG для всех задач через словарь **default_args**. Для отдельной задачи их можно переопределить, указав те же аргументы в определении задачи.
@@ -230,9 +230,9 @@ simple_redshift_3()
 Обычно оператору нужны лишь несколько параметров. При использовании операторов Airflow учитывайте следующее:
 
 - Оператор, работающий с внешним сервисом, как правило, требует **подключение (connection)** для аутентификации. Подробнее: [Управление подключениями в Apache Airflow](connections.md).
-- [Deferrable-операторы](../04.%20astronomer-advanced/deferrable-operators.md) освобождают слот воркера во время ожидания завершения работы. Это снижает затраты и улучшает масштабируемость. Astronomer рекомендует использовать deferrable-операторы, когда они есть для вашего сценария и задача выполняется дольше минуты. У многих операторов, которым нужно что-то ждать, есть режим deferrable — включить его можно параметром `deferrable=True`.
+- [Deferrable-операторы](https://www.astronomer.io/docs/learn/deferrable-operators) освобождают слот воркера во время ожидания завершения работы. Это снижает затраты и улучшает масштабируемость. Astronomer рекомендует использовать deferrable-операторы, когда они есть для вашего сценария и задача выполняется дольше минуты. У многих операторов, которым нужно что-то ждать, есть режим deferrable — включить его можно параметром `deferrable=True`.
 - [Сенсоры](sensors.md) — тип операторов, которые ждут наступления события. Их используют для отслеживания событий во внешних системах.
-- Если под вашу задачу нет оператора, можно использовать свой Python-код в задаче с декоратором `@task` или в **PythonOperator**, либо расширить существующий оператор. Подробнее: [Custom hooks and operators](../02.%20astronomer-dags/custom-hooks-operators.md).
+- Если под вашу задачу нет оператора, можно использовать свой Python-код в задаче с декоратором `@task` или в **PythonOperator**, либо расширить существующий оператор. Подробнее: [Custom hooks and operators](https://www.astronomer.io/docs/learn/airflow-importing-custom-hooks-operators).
 - Если оператор для вашей задачи есть — используйте его вместо своих функций или [хуков](hooks.md). Так DAG проще читать и поддерживать.
 - Операторы и [декораторы](../02.%20astronomer-dags/airflow-decorators.md) можно свободно сочетать в одном DAG. Многие используют `@task` для большинства задач и добавляют операторы там, где есть подходящий специализированный оператор. В примере выше в DAG есть и оператор (BashOperator в других примерах), и задача с `@task`.
 - Пакет [Airflow standard provider](https://airflow.apache.org/docs/apache-airflow-providers-standard/stable/index.html) включает базовые операторы вроде PythonOperator и BashOperator. Они доступны по умолчанию при использовании Astro CLI. Остальные операторы входят в пакеты провайдеров; часть из них нужно устанавливать отдельно в зависимости от дистрибутива Airflow.

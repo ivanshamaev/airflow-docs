@@ -1,14 +1,14 @@
 # Синхронное выполнение DAG (Synchronous dag execution)
 
-**Синхронное выполнение DAG** — возможность в Airflow 3.1+ запустить DAG run через API и дождаться его завершения, после чего получить значения [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md), запушенные одной или несколькими задачами этого DAG run. Это удобно и для одиночного запуска DAG, и когда один и тот же DAG может запускаться много раз параллельно.
+**Синхронное выполнение DAG** — возможность в Airflow 3.1+ запустить DAG run через API и дождаться его завершения, после чего получить значения [XCom](https://www.astronomer.io/docs/learn/passing-data-between-tasks), запушенные одной или несколькими задачами этого DAG run. Это удобно и для одиночного запуска DAG, и когда один и тот же DAG может запускаться много раз параллельно.
 
 Синхронное выполнение DAG добавлено как [экспериментальная функция](https://airflow.apache.org/docs/apache-airflow/stable/release-process.html#experimental-features) в Airflow 3.1.
 
 ## Необходимая база
 
-- Понимание основ XCom. См. [Передача данных между задачами](../02.%20astronomer-dags/passing-data-between-tasks.md).
+- Понимание основ XCom. См. [Передача данных между задачами](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks).
 - Умение пользоваться [REST API Airflow](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html).
-- Основы Airflow. См. [Введение в Apache Airflow](../01.%20astronomer-basic/README.md).
+- Основы Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Когда использовать синхронное выполнение DAG
 

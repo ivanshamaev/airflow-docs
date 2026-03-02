@@ -16,7 +16,7 @@
 
 Чтобы получить максимум от руководства, нужно понимать:
 
-- Основы Airflow и [Astro CLI](https://www.astronomer.io/docs/astro/cli/install-cli). См. [Get started with Airflow](../01.%20astronomer-basic/README.md).
+- Основы Airflow и [Astro CLI](https://www.astronomer.io/docs/astro/cli/install-cli). См. [Get started with Airflow](https://www.astronomer.io/docs/learn/get-started-with-airflow).
 - CI/CD для Python-скриптов. См. [Continuous Integration with Python: An Introduction](https://realpython.com/python-continuous-integration/).
 - Хотя бы один Python test runner. В руководстве в основном используется [`pytest`](https://docs.pytest.org/en/stable/index.html), подойдут и другие: [`nose2`](https://docs.nose2.io/en/latest/getting_started.html), [`unittest`](https://docs.python.org/3/library/unittest.html).
 - Основы тестирования в Python. См. [Getting Started with Testing in Python](https://realpython.com/python-testing/).
@@ -30,7 +30,7 @@
 - Систематически проверять и обеспечивать выполнение собственных требований к DAG.
 - Разрабатывать DAG без локального окружения Airflow.
 
-Минимум — запускать тесты валидации для проверки [ошибок импорта](testing-airflow.md). Дополнительно можно проверять свою логику: например, что у всех DAG в инстансе задано `catchup=False` или что в DAG используются только `tags` из разрешённого списка.
+Минимум — запускать тесты валидации для проверки [ошибок импорта](https://www.astronomer.io/docs/learn/testing-airflow#prevent-import-errors). Дополнительно можно проверять свою логику: например, что у всех DAG в инстансе задано `catchup=False` или что в DAG используются только `tags` из разрешённого списка.
 
 Тесты валидации DAG применяются ко всем DAG в окружении Airflow, поэтому достаточно одного набора тестов.
 
@@ -173,7 +173,7 @@ astro dev run dags test my_dag '2023-01-29'
 
 В окружении для тестов должны быть:
 
-- Инициализированная [метаданная БД Airflow](../03.%20astronomer-infra/airflow-database.md), если DAG использует её (например, XCom). БД создаётся при первом запуске Airflow в окружении. Проверка: `airflow db check`, инициализация новой БД: `airflow db migrate` (в версиях до 2.7 — `airflow db init`).
+- Инициализированная [метаданная БД Airflow](https://www.astronomer.io/docs/learn/airflow-database), если DAG использует её (например, XCom). БД создаётся при первом запуске Airflow в окружении. Проверка: `airflow db check`, инициализация новой БД: `airflow db migrate` (в версиях до 2.7 — `airflow db init`).
 - Все провайдеры, которые использует DAG.
 - [Airflow 2.5.0](https://airflow.apache.org/docs/apache-airflow/stable/start.html) или новее. Версию можно проверить командой `airflow version`.
 
@@ -241,7 +241,7 @@ if __name__ == "__main__":
 
 - Конфигурацию DAG в виде словаря.
 - Переменные Airflow в виде файла `.yaml`.
-- [Подключения Airflow](../01.%20astronomer-basic/connections.md) в виде файла `.yaml`.
+- [Подключения Airflow](https://www.astronomer.io/docs/learn/connections) в виде файла `.yaml`.
 - `execution_date` в виде объекта `pendulum.datetime`.
 
 Это удобно для проверки DAG на разных датах или с разными подключениями и конфигурациями. Пример передачи параметров в `dag.test()`:
@@ -377,21 +377,21 @@ class EvenNumberCheckOperator(unittest.TestCase):
 
 Тестирование DAG проверяет соответствие кода требованиям. Но даже при идеальном коде пайплайны могут ломаться или работать хуже из-за качества данных. Airflow как центр современного стека данных хорошо подходит для проверок качества данных.
 
-Проверки качества данных отличаются от тестирования кода тем, что данные не статичны, в отличие от кода DAG. Рекомендуется встраивать проверки качества в DAG и использовать [зависимости в Airflow](../01.%20astronomer-basic/task-dependencies.md) и [ветвление](../02.%20astronomer-dags/branch-operator.md), чтобы задать поведение при проблемах с качеством: от остановки пайплайна до [уведомлений](../02.%20astronomer-dags/airflow-notifications.md) ответственным за качество данных.
+Проверки качества данных отличаются от тестирования кода тем, что данные не статичны, в отличие от кода DAG. Рекомендуется встраивать проверки качества в DAG и использовать [зависимости в Airflow](https://www.astronomer.io/docs/learn/managing-dependencies) и [ветвление](https://www.astronomer.io/docs/learn/airflow-branch-operator), чтобы задать поведение при проблемах с качеством: от остановки пайплайна до [уведомлений](https://www.astronomer.io/docs/learn/error-notifications-in-airflow) ответственным за качество данных.
 
 Интегрировать проверки качества в DAG можно разными способами:
 
 - [Soda Core](https://www.astronomer.io/docs/learn/soda-data-quality): фреймворк для проверок качества данных; конфигурация в YAML для реляционных БД и Spark DataFrame.
 - [Great Expectations](https://www.astronomer.io/docs/learn/airflow-great-expectations): набор проверок качества данных с [провайдером для Airflow](https://registry.astronomer.io/providers/great-expectations); проверки задаются в JSON для реляционных БД, Spark и pandas DataFrame.
-- [SQL check operators](../05.%20astronomer-write-dags/sql-check-operators.md): встроенные в Airflow операторы для настраиваемых проверок качества на разных реляционных БД.
+- [SQL check operators](https://www.astronomer.io/docs/learn/airflow-sql-data-quality): встроенные в Airflow операторы для настраиваемых проверок качества на разных реляционных БД.
 
-Проверки качества масштабируются лучше, если DAG загружают или обрабатывают данные инкрементально. Подробнее: [DAG Writing Best Practices in Apache Airflow](../02.%20astronomer-dags/dag-best-practices.md). Обработка небольших инкрементальных порций в каждом DAG Run ограничивает влияние проблем с качеством данных.
+Проверки качества масштабируются лучше, если DAG загружают или обрабатывают данные инкрементально. Подробнее: [DAG Writing Best Practices in Apache Airflow](https://www.astronomer.io/docs/learn/dag-best-practices). Обработка небольших инкрементальных порций в каждом DAG Run ограничивает влияние проблем с качеством данных.
 
 Дополнительно о качестве данных в Airflow:
 
 - [Get Improved Data Quality Checks in Airflow with the Updated Great Expectations Operator](https://www.astronomer.io/blog/improved-data-quality-checks-in-airflow-with-great-expectations-operator/)
 - [How to Keep Data Quality in Check with Airflow](https://www.astronomer.io/blog/how-to-keep-data-quality-in-check-with-airflow/)
-- [Data quality and Airflow guide](../05.%20astronomer-write-dags/sql-check-operators.md)
+- [Data quality and Airflow guide](https://www.astronomer.io/docs/learn/data-quality)
 
 ---
 

@@ -24,7 +24,7 @@
 
 В коде задач рекомендуется использовать стандартный модуль `logging`: `logging.getLogger(__name__)` или передавать логгер из контекста. Так логи корректно попадают в вывод задачи и в UI. Избегайте print для важной информации — используйте логгер с подходящим уровнем.
 
-Подробнее: [Logging](logging.md), [Airflow logging](https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/logging-tasks.html).
+Подробнее: [Logging](https://www.astronomer.io/docs/learn/logging), [Airflow logging](https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/logging-tasks.html).
 
 ---
 

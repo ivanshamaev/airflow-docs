@@ -4,16 +4,16 @@
 
 В этом руководстве вы узнаете, как используются сенсоры в Airflow, лучшие практики для продакшена и как применять отложенные (deferrable) версии сенсоров.
 
-> **Совет.** Сенсоры используются, чтобы дождаться выполнения условия перед запуском нижестоящих задач. У многих сенсоров есть deferrable-режим: они освобождают слот воркера на время ожидания и повышают эффективность DAG. Подробнее: [Deferrable-операторы](../04.%20astronomer-advanced/deferrable-operators.md).
+> **Совет.** Сенсоры используются, чтобы дождаться выполнения условия перед запуском нижестоящих задач. У многих сенсоров есть deferrable-режим: они освобождают слот воркера на время ожидания и повышают эффективность DAG. Подробнее: [Deferrable-операторы](https://www.astronomer.io/docs/learn/deferrable-operators).
 >
-> Если DAG должен запускаться по сообщениям в очереди, рассмотрите [event-driven планирование](../04.%20astronomer-advanced/event-driven-scheduling.md) вместо сенсоров.
+> Если DAG должен запускаться по сообщениям в очереди, рассмотрите [event-driven планирование](https://www.astronomer.io/docs/learn/airflow-event-driven-scheduling) вместо сенсоров.
 
 ## Необходимая база
 
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Основы Python. См. [документацию Python](https://docs.python.org/3/tutorial/index.html).
-- Основные концепции Airflow. См. [Введение в Apache Airflow](README.md).
+- Основные концепции Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Основы сенсоров
 
@@ -37,7 +37,7 @@
 
 - [**SqlSensor**](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlsensor): ждёт появления данных в SQL-таблице. Удобен, когда DAG должен обрабатывать данные по мере поступления в БД.
 - [**HttpSensor**](https://registry.astronomer.io/providers/http/modules/httpsensor): ждёт доступности API. Удобен, чтобы убедиться, что запросы к API будут успешными.
-- [**ExternalTaskSensor**](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor): ждёт завершения задачи в Airflow. Удобен для [зависимостей между DAG](../02.%20astronomer-dags/cross-dag-dependencies.md) в одном окружении Airflow.
+- [**ExternalTaskSensor**](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor): ждёт завершения задачи в Airflow. Удобен для [зависимостей между DAG](https://www.astronomer.io/docs/learn/cross-dag-dependencies) в одном окружении Airflow.
 - [**DateTimeSensor**](https://registry.astronomer.io/providers/apache-airflow/modules/datetimesensor): ждёт наступления указанной даты и времени. Удобен, когда разные задачи одного DAG должны запускаться в разное время.
 - [**S3KeySensor**](https://registry.astronomer.io/providers/amazon/modules/s3keysensor): ждёт появления ключа (файла) в бакете Amazon S3. Удобен, когда DAG обрабатывает файлы из S3 по мере появления.
 - [**Декоратор @task.sensor**](https://airflow.apache.org/docs/apache-airflow/stable/tutorial/taskflow.html#using-the-taskflow-api-with-sensor-operators): превращает любую Python-функцию, возвращающую `PokeReturnValue`, в экземпляр [BaseSensorOperator](https://registry.astronomer.io/providers/apache-airflow/modules/basesensoroperator). Удобен при сложной логике проверки или при работе с API, для которого нет отдельного сенсора.
@@ -207,7 +207,7 @@ sensor_decorator()
 
 Здесь `@task.sensor` применяется к функции `check_dog_availability()`, которая проверяет, возвращает ли API код 200. При 200 задача сенсора помечается успешной. При любом другом коде сенсор повторяет проверку через `poke_interval`.
 
-Необязательный параметр `xcom_value` в `PokeReturnValue` задаёт данные, которые будут записаны в [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md) при `is_done=True`. Эти данные можно использовать в любых нижестоящих задачах.
+Необязательный параметр `xcom_value` в `PokeReturnValue` задаёт данные, которые будут записаны в [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks) при `is_done=True`. Эти данные можно использовать в любых нижестоящих задачах.
 
 **Тот же сенсор через PythonSensor:**
 
@@ -262,7 +262,7 @@ def pythonsensor_example():
 pythonsensor_example()
 ```
 
-Здесь PythonSensor использует `check_dog_availability_func` для проверки кода ответа API. При 200 ответ записывается в [XCom](../02.%20astronomer-dags/passing-data-between-tasks.md), функция возвращает `True`, и задача сенсора помечается успешной. При другом коде функция возвращает `False`, и сенсор повторяет проверку через `poke_interval`.
+Здесь PythonSensor использует `check_dog_availability_func` для проверки кода ответа API. При 200 ответ записывается в [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks), функция возвращает `True`, и задача сенсора помечается успешной. При другом коде функция возвращает `False`, и сенсор повторяет проверку через `poke_interval`.
 
 ## Рекомендации по сенсорам
 
@@ -283,7 +283,7 @@ pythonsensor_example()
 
 ## Deferrable-операторы
 
-[Deferrable-операторы](../04.%20astronomer-advanced/deferrable-operators.md) (иногда их называют асинхронными) решают проблему постоянной занятости слота воркера на всё время работы оператора или сенсора. У многих операторов есть параметр **deferrable**, который можно установить в `True`. Для сенсоров без такого параметра существуют отдельные deferrable-версии в open source Airflow и в [Astronomer Providers](https://github.com/astronomer/astronomer-providers). Astronomer рекомендует по возможности использовать их, чтобы снизить нагрузку на ресурсы.
+[Deferrable-операторы](https://www.astronomer.io/docs/learn/deferrable-operators) (иногда их называют асинхронными) решают проблему постоянной занятости слота воркера на всё время работы оператора или сенсора. У многих операторов есть параметр **deferrable**, который можно установить в `True`. Для сенсоров без такого параметра существуют отдельные deferrable-версии в open source Airflow и в [Astronomer Providers](https://github.com/astronomer/astronomer-providers). Astronomer рекомендует по возможности использовать их, чтобы снизить нагрузку на ресурсы.
 
 Для авторов DAG использование deferrable-сенсоров не отличается от обычных. Нужно только запустить процесс **triggerer** в Airflow и:
 
@@ -291,7 +291,7 @@ pythonsensor_example()
 - установить **deferrable=True** для нужных экземпляров сенсоров; либо
 - включить конфиг Airflow `operators.default_deferrable=True`, чтобы все сенсоры с поддержкой deferrable работали в этом режиме по умолчанию.
 
-Подробнее: [Deferrable-операторы](../04.%20astronomer-advanced/deferrable-operators.md).
+Подробнее: [Deferrable-операторы](https://www.astronomer.io/docs/learn/deferrable-operators).
 
 ---
 

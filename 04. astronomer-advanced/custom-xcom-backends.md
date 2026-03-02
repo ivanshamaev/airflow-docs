@@ -1,6 +1,6 @@
 # Кастомные стратегии XCom backend (Custom XCom backend strategies)
 
-[XCom в Airflow](../02.%20astronomer-dags/passing-data-between-tasks.md) позволяют передавать данные между задачами. По умолчанию Airflow хранит XCom в [базе метаданных](../03.%20astronomer-infra/airflow-database.md), что удобно для локальной разработки, но ограничено по производительности. При настройке кастомного XCom backend можно задать, где и как Airflow хранит XCom, а также методы сериализации и десериализации.
+[XCom в Airflow](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks) позволяют передавать данные между задачами. По умолчанию Airflow хранит XCom в [базе метаданных](https://www.astronomer.io/docs/learn/airflow-database), что удобно для локальной разработки, но ограничено по производительности. При настройке кастомного XCom backend можно задать, где и как Airflow хранит XCom, а также методы сериализации и десериализации.
 
 В этом руководстве вы узнаете:
 
@@ -17,7 +17,7 @@
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Основы облачного object storage: [AWS S3](https://aws.amazon.com/s3/), [GCP Cloud Storage](https://cloud.google.com/storage) или [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs/).
-- Основы XCom. См. [Передача данных между задачами](../02.%20astronomer-dags/passing-data-between-tasks.md).
+- Основы XCom. См. [Передача данных между задачами](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks).
 
 ## Зачем использовать кастомный XCom backend?
 
@@ -29,7 +29,7 @@
 - Production-окружение с собственными политиками хранения, удаления и резервного копирования XCom.
 - Требуется больший объём хранилища для XCom, чем может предоставить база метаданных Airflow.
 
-Кастомный XCom backend также позволяет задать собственные методы сериализации и десериализации, если нужно добавить сериализацию для класса или регистрация кастомного сериализатора невозможна. Подробнее: [Кастомная сериализация и десериализация](custom-xcom-backends.md).
+Кастомный XCom backend также позволяет задать собственные методы сериализации и десериализации, если нужно добавить сериализацию для класса или регистрация кастомного сериализатора невозможна. Подробнее: [Кастомная сериализация и десериализация](https://www.astronomer.io/docs/learn/custom-xcom-backend-strategies#custom-serialization-and-deserialization).
 
 ## Как настроить кастомный XCom backend
 
@@ -49,7 +49,7 @@
 - **`AIRFLOW__COMMON_IO__XCOM_OBJECTSTORAGE_PATH`:** путь в object storage для XCom в формате `scheme://connection/bucket/xcom`. Пример: `s3://my-s3-connection@my-bucket/xcom`. Типичные схемы: `s3`, `gs`, `abfs` для Amazon S3, Google Cloud Storage и Azure Blob Storage.
 - **`AIRFLOW__CORE__XCOM_BACKEND`:** класс XCom backend. Для Object Storage XCom Backend задайте `airflow.providers.common.io.xcom.backend.XComObjectStorageBackend`.
 
-Пошаговая настройка кастомного XCom backend на базе Object Storage для Amazon S3, Google Cloud Storage и Azure Blob Storage: [Set up a custom XCom backend using object storage](custom-xcom-backends.md).
+Пошаговая настройка кастомного XCom backend на базе Object Storage для Amazon S3, Google Cloud Storage и Azure Blob Storage: [Set up a custom XCom backend using object storage](https://www.astronomer.io/docs/learn/custom-xcom-backends-tutorial).
 
 ### Кастомный класс XCom backend
 
@@ -57,7 +57,7 @@
 
 Ниже — пример класса `MyCustomXComBackend`, который допускает только JSON-сериализуемые XCom и сохраняет их и в Amazon S3, и в Google Cloud Storage в методе `serialize_value()`. Метод `deserialize_value()` забирает XCom из бакета Amazon S3 и возвращает значение.
 
-В базе метаданных Airflow хранится строка-ссылка на XCom (она отображается во вкладке XCom в UI). Строка имеет префикс `s3_and_gs://`, чтобы было видно, что XCom лежит в S3 и GCS. В `serialize_value()` и `deserialize_value()` можно добавлять любую нужную логику сериализации и десериализации; подробнее: [Кастомная сериализация и десериализация](custom-xcom-backends.md).
+В базе метаданных Airflow хранится строка-ссылка на XCom (она отображается во вкладке XCom в UI). Строка имеет префикс `s3_and_gs://`, чтобы было видно, что XCom лежит в S3 и GCS. В `serialize_value()` и `deserialize_value()` можно добавлять любую нужную логику сериализации и десериализации; подробнее: [Кастомная сериализация и десериализация](https://www.astronomer.io/docs/learn/custom-xcom-backend-strategies#custom-serialization-and-deserialization).
 
 ```python
 class MyCustomXComBackend(BaseXCom):
@@ -170,7 +170,7 @@ AIRFLOW__CORE__XCOM_BACKEND=include.<your-file-name>.MyCustomXComBackend
 
 Если через XCom нужно передавать объекты, для которых сериализатора нет, возможны варианты:
 
-- **Кастомный XCom backend** с собственными методами сериализации и десериализации. См. [Кастомный класс XCom backend](custom-xcom-backends.md).
+- **Кастомный XCom backend** с собственными методами сериализации и десериализации. См. [Кастомный класс XCom backend](https://www.astronomer.io/docs/learn/custom-xcom-backend-strategies#use-a-custom-xcom-backend-class).
 - **Методы `serialize()` и `deserialize()`** в классе передаваемого объекта. См. [Serialization](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/serializers.html).
 - **Регистрация кастомного сериализатора.** См. [Serialization](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/serializers.html).
 

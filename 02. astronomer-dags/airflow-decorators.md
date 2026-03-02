@@ -45,7 +45,7 @@ print(subtract(4, 2))  # выведет 200
 
 TaskFlow API в Airflow призван упростить написание DAG за счёт сокращения шаблонного кода по сравнению с традиционными операторами. В результате DAG часто становятся короче и понятнее.
 
-В целом выбор между TaskFlow API и традиционным стилем — вопрос предпочтений. В большинстве случаев декоратор TaskFlow и соответствующий традиционный оператор ведут себя одинаково. В одном DAG можно [смешивать декораторы и традиционные операторы](airflow-decorators.md).
+В целом выбор между TaskFlow API и традиционным стилем — вопрос предпочтений. В большинстве случаев декоратор TaskFlow и соответствующий традиционный оператор ведут себя одинаково. В одном DAG можно [смешивать декораторы и традиционные операторы](https://www.astronomer.io/docs/learn/airflow-decorators#mixing-taskflow-decorators-with-traditional-operators).
 
 ## Как использовать TaskFlow API
 
@@ -128,7 +128,7 @@ def taskflow():
 taskflow()
 ```
 
-В варианте с декораторами не нужно явно создавать PythonOperator, кода меньше и его проще читать. Не требуется вручную вызывать `ti.xcom_pull` и `ti.xcom_push` для [передачи данных между задачами](passing-data-between-tasks.md): при задании зависимостей через `store_data(process_data(extract_bitcoin_price()))` всё делает TaskFlow API.
+В варианте с декораторами не нужно явно создавать PythonOperator, кода меньше и его проще читать. Не требуется вручную вызывать `ti.xcom_pull` и `ti.xcom_push` для [передачи данных между задачами](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks): при задании зависимостей через `store_data(process_data(extract_bitcoin_price()))` всё делает TaskFlow API.
 
 Дополнительно при использовании декораторов стоит помнить:
 
@@ -266,7 +266,7 @@ taskflow()
 
 Зависимости с традиционными операторами по-прежнему задаются функцией `chain` или операторами сдвига (`>>`). Подробнее: [Управление зависимостями между задачами и группами задач](../01.%20astronomer-basic/task-dependencies.md).
 
-Передавать данные между декорированными задачами и традиционными операторами можно через [XCom](passing-data-between-tasks.md). Ниже — примеры для разных комбинаций.
+Передавать данные между декорированными задачами и традиционными операторами можно через [XCom](https://www.astronomer.io/docs/learn/airflow-passing-data-between-tasks). Ниже — примеры для разных комбинаций.
 
 ### TaskFlow → TaskFlow
 
@@ -343,7 +343,7 @@ chain(_first_task, _second_task)
 
 ### TaskFlow → традиционный оператор
 
-Вызов TaskFlow-задачи возвращает ссылку (внутри — XComArg), которую можно передать в [шаблонируемые поля](jinja-templating.md) традиционного оператора — зависимость между задачами создаётся автоматически.
+Вызов TaskFlow-задачи возвращает ссылку (внутри — XComArg), которую можно передать в [шаблонируемые поля](https://www.astronomer.io/docs/learn/templating#templateable-fields-and-scripts) традиционного оператора — зависимость между задачами создаётся автоматически.
 
 Список шаблонируемых полей у каждого оператора свой. В [Astronomer Registry](https://registry.astronomer.io/) указано, какие поля по умолчанию шаблонируемые; [управление шаблонируемыми полями](https://www.astronomer.io/docs/learn/templating#templating-additional-fields) тоже возможно.
 

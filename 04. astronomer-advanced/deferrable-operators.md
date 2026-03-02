@@ -6,8 +6,8 @@ Deferrable-операторы используют библиотеку Python [
 
 Чтобы получить максимум от руководства, нужно понимать:
 
-- Сенсоры Airflow. См. [Sensors 101](../01.%20astronomer-basic/sensors.md).
-- Операторы Airflow. См. [Operators 101](../01.%20astronomer-basic/operators.md).
+- Сенсоры Airflow. См. [Sensors 101](https://www.astronomer.io/docs/learn/what-is-a-sensor).
+- Операторы Airflow. См. [Operators 101](https://www.astronomer.io/docs/learn/what-is-an-operator).
 
 ## Термины и концепции
 
@@ -117,7 +117,7 @@ sync_dag_2()
 
 ![Сенсор занимает слот воркера](images/3-0_standard_sensor_slot_taking.png)
 
-Из-за ограничений Airflow на число активных run одного DAG и число активных задач по DAG во всех run для параллельного выполнения других DAG и задач потребуется масштабирование, см. [Scaling Airflow to optimize performance](../03.%20astronomer-infra/scaling-airflow.md).
+Из-за ограничений Airflow на число активных run одного DAG и число активных задач по DAG во всех run для параллельного выполнения других DAG и задач потребуется масштабирование, см. [Scaling Airflow to optimize performance](https://www.astronomer.io/docs/learn/airflow-scaling-workers).
 
 При замене `DateTimeSensor` на `DateTimeSensorAsync` по-прежнему будет 16 запущенных DAG run, но задачи окажутся в отложенном (deferred) состоянии и не будут занимать слоты воркеров. В коде DAG меняется только оператор — `DateTimeSensorAsync` вместо `DateTimeSensor`:
 

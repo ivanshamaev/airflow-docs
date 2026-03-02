@@ -11,7 +11,7 @@
 Чтобы получить максимум от руководства, нужно понимать:
 
 - Основы Golang. См. [документацию Golang](https://go.dev/doc/).
-- Основы Airflow. См. [Введение в Apache Airflow](../01.%20astronomer-basic/README.md).
+- Основы Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Как использовать Golang SDK
 
@@ -21,8 +21,8 @@ Golang SDK экспериментальный и в разработке. Акт
 
 Запускать задачи на других языках можно и так:
 
-- **KubernetesPodOperator** — запуск любого Docker-образа, в том числе с кодом на любом языке. Подробнее: [Use the KubernetesPodOperator to run a script in another language](kubernetes-pod-operator.md).
-- **BashOperator** — запуск скрипта на другом языке. Например, можно запускать скрипты на JavaScript или R. Подробнее: [Run a script in another programming language](../01.%20astronomer-basic/bashoperator.md).
+- **KubernetesPodOperator** — запуск любого Docker-образа, в том числе с кодом на любом языке. Подробнее: [Use the KubernetesPodOperator to run a script in another language](https://www.astronomer.io/docs/learn/kubepod-operator#example-use-the-kubernetespodoperator-to-run-a-script-in-another-language).
+- **BashOperator** — запуск скрипта на другом языке. Например, можно запускать скрипты на JavaScript или R. Подробнее: [Run a script in another programming language](https://www.astronomer.io/docs/learn/bashoperator#example-run-a-script-in-another-programming-language).
 
 ---
 

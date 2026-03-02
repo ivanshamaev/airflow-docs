@@ -10,8 +10,8 @@
 
 Чтобы получить максимум от руководства, нужно понимать:
 
-- Основы масштабирования Airflow. См. [Scaling out Airflow](../03.%20astronomer-infra/scaling-airflow.md).
-- Операторы Airflow. См. [Operators 101](../01.%20astronomer-basic/operators.md).
+- Основы масштабирования Airflow. См. [Scaling out Airflow](https://www.astronomer.io/docs/learn/airflow-scaling-workers).
+- Операторы Airflow. См. [Operators 101](https://www.astronomer.io/docs/learn/what-is-an-operator).
 
 ## Создание пула
 

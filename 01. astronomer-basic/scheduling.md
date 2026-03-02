@@ -1,6 +1,6 @@
 # Планирование DAG в Apache Airflow®
 
-Одна из базовых возможностей [Apache Airflow®](https://airflow.apache.org/) — планирование DAG. В Airflow доступно много вариантов: от простых расписаний по cron до [data-aware scheduling](assets.md) с ассетами и event-driven планирования по сообщениям в очереди.
+Одна из базовых возможностей [Apache Airflow®](https://airflow.apache.org/) — планирование DAG. В Airflow доступно много вариантов: от простых расписаний по cron до [data-aware scheduling](https://www.astronomer.io/docs/learn/scheduling-in-airflow#data-aware-scheduling) с ассетами и event-driven планирования по сообщениям в очереди.
 
 В этом руководстве вы узнаете:
 
@@ -9,9 +9,9 @@
 - Как интерпретировать метки времени, связанные с DAG run.
 
 > **Инфо.** Это руководство даёт обзор вариантов планирования. Подробнее по отдельным типам:
-> - [Повторный запуск DAG и задач](../02.%20astronomer-dags/rerunning-dags.md) (включая backfill)
-> - [Event-driven планирование](../04.%20astronomer-advanced/event-driven-scheduling.md)
-> - [Ассеты и data-aware планирование](assets.md)
+> - [Повторный запуск DAG и задач](https://www.astronomer.io/docs/learn/rerunning-dags) (включая backfill)
+> - [Event-driven планирование](https://www.astronomer.io/docs/learn/airflow-event-driven-scheduling)
+> - [Ассеты и data-aware планирование](https://www.astronomer.io/docs/learn/airflow-datasets)
 
 ## Необходимая база
 
@@ -19,7 +19,7 @@
 
 - Модули даты и времени в Python. См. [документацию Python по `datetime`](https://docs.python.org/3/library/datetime.html) и [документацию `pendulum`](https://pendulum.eustace.io/docs/).
 - DAG в Airflow. См. [Введение в DAG Airflow](dags.md).
-- Основные концепции Airflow. См. [Введение в Apache Airflow](README.md).
+- Основные концепции Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Метки времени DAG run
 
@@ -29,8 +29,8 @@ DAG run — это один запуск DAG, привязанный к моме
 - **Last Scheduling Decision**: последний момент, когда планировщик пытался запланировать task instances для этого DAG run.
 - **Run ID**: уникальный идентификатор DAG run. Run ID складывается из типа запуска (например, `scheduled`) и логической даты. Если логическая дата `None`, используется run after date с добавлением случайного суффикса для уникальности. Run ID используется для идентификации DAG run в метаданных Airflow.
 - **Duration** и **Run Duration**: время выполнения DAG run, разница между временем начала и окончания.
-- **End** и **End Date**: момент окончания DAG run. Эта метка не связана с [параметром DAG](../02.%20astronomer-dags/dag-parameters.md) `end_date`.
-- **Start** и **Start Date**: момент фактического начала DAG run. Эта метка не связана с [параметром DAG](../02.%20astronomer-dags/dag-parameters.md) `start_date`.
+- **End** и **End Date**: момент окончания DAG run. Эта метка не связана с [параметром DAG](https://www.astronomer.io/docs/learn/scheduling-in-airflow#scheduling-dag-parameters) `end_date`.
+- **Start** и **Start Date**: момент фактического начала DAG run. Эта метка не связана с [параметром DAG](https://www.astronomer.io/docs/learn/scheduling-in-airflow#scheduling-dag-parameters) `start_date`.
 - **Run after**: момент времени, после которого этот DAG run может быть запущен. Если задана логическая дата, run after совпадает с ней. Если логическая дата `None`, run after устанавливается в текущее время в момент триггера DAG run.
 - **Logical Date**: момент времени, после которого этот DAG run может быть запущен. В Airflow UI эта метка отображается как основная дата DAG run. Логическую дату можно явно задать как `None` при запуске DAG через REST API или UI.
 
@@ -45,7 +45,7 @@ DAG run — это один запуск DAG, привязанный к моме
 
 Следующие параметры задают, когда DAG будет выполняться:
 
-- **catchup**: булево значение; нужно ли автоматически создавать все запуски между `start_date` и текущей датой. По умолчанию `False`. Помимо этого можно вручную запускать DAG за любую дату в прошлом. См. [Backfill](../02.%20astronomer-dags/rerunning-dags.md#backfill).
+- **catchup**: булево значение; нужно ли автоматически создавать все запуски между `start_date` и текущей датой. По умолчанию `False`. Помимо этого можно вручную запускать DAG за любую дату в прошлом. См. [Backfill](https://www.astronomer.io/docs/learn/rerunning-dags#backfill).
 - **end_date**: дата, после которой DAG больше не планируется. По умолчанию `None`.
 - **schedule**: правила, по которым создаются DAG run. Принимает cron-выражения, объекты timedelta, timetables и списки ассетов. По умолчанию `None`.
 - **start_date**: момент времени, после которого DAG может запускаться. При использовании CronDataIntervalTimetable `start_date` — момент, после которого может начаться первый интервал данных. По умолчанию `None`.
@@ -101,7 +101,7 @@ Cron-выражения под капотом передаются в timetable.
 - запуск каждый день кроме праздников;
 - разное время в разные дни (например, 14:00 по четвергам и 16:00 по субботам).
 
-Такие расписания можно реализовать с помощью [timetables](scheduling.md).
+Такие расписания можно реализовать с помощью [timetables](https://www.astronomer.io/docs/learn/scheduling-in-airflow#timetables).
 
 ## Data-aware планирование (ассеты)
 
@@ -171,7 +171,7 @@ my_dag()
 
 Ассеты могут обновляться задачами любого DAG в том же окружении Airflow, вызовами [эндпоинта ассетов REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) или вручную в Airflow UI.
 
-Подробнее об ассетах и data-driven планировании: [Ассеты и data-aware планирование в Airflow](assets.md). Ассеты можно комбинировать с AssetWatchers для event-driven расписаний. См. [Event-Driven Scheduling](../04.%20astronomer-advanced/event-driven-scheduling.md).
+Подробнее об ассетах и data-driven планировании: [Ассеты и data-aware планирование в Airflow](assets.md). Ассеты можно комбинировать с AssetWatchers для event-driven расписаний. См. [Event-Driven Scheduling](https://www.astronomer.io/docs/learn/airflow-event-driven-scheduling).
 
 ## Timetables
 
@@ -194,7 +194,7 @@ def my_dag():
     pass
 ```
 
-При таком расписании создаётся один непрерывный DAG run: следующий запуск начинается сразу после завершения предыдущего (успешного или нет). ContinuousTimetable особенно удобен при использовании [сенсоров](sensors.md) или [deferrable-операторов](../04.%20astronomer-advanced/deferrable-operators.md) для ожидания нерегулярных событий во внешних системах.
+При таком расписании создаётся один непрерывный DAG run: следующий запуск начинается сразу после завершения предыдущего (успешного или нет). ContinuousTimetable особенно удобен при использовании [сенсоров](sensors.md) или [deferrable-операторов](https://www.astronomer.io/docs/learn/deferrable-operators) для ожидания нерегулярных событий во внешних системах.
 
 > **Внимание.** Airflow рассчитан на оркестрацию пайплайнов пакетами (batch), а не на стриминг и низкую задержку. Для запусков чаще чем раз в минуту лучше комбинировать Airflow с инструментами вроде [Apache Kafka](https://www.astronomer.io/docs/learn/airflow-kafka).
 ---

@@ -479,7 +479,7 @@ multiply_by_2 >> add_10 >> multiply_by_100
 
 ## Маппинг по task groups
 
-[Task groups](task-groups.md), определённые декоратором `@task_group`, тоже можно маппить. Синтаксис такой же, как для одной задачи:
+[Task groups](https://www.astronomer.io/docs/learn/task-groups), определённые декоратором `@task_group`, тоже можно маппить. Синтаксис такой же, как для одной задачи:
 
 ```python
 from airflow.sdk import task, task_group

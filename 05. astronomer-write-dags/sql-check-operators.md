@@ -27,7 +27,7 @@
 Чтобы получить максимум от туториала, желательно понимать:
 
 - Выполнение SQL из Airflow. См. [Исполнение SQL в Airflow](../01.%20astronomer-basic/execute-sql.md).
-- Как проектировать процесс проверки качества данных. См. [Data quality and Airflow](sql-check-operators.md).
+- Как проектировать процесс проверки качества данных. См. [Data quality and Airflow](https://www.astronomer.io/docs/learn/data-quality).
 
 ## Предварительные требования
 

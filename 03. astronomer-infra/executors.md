@@ -9,7 +9,7 @@
 Полезно понимать:
 
 - Компоненты Airflow. См. [Компоненты Airflow](airflow-components.md).
-- Основные концепции Airflow. См. [Introduction to Apache Airflow](../01.%20astronomer-basic/README.md).
+- Основные концепции Airflow. См. [Introduction to Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
 
 ## Как выбрать исполнителя
 
