@@ -12,7 +12,7 @@
 
 Для максимальной отдачи от руководства нужно понимать:
 
-- Основные концепции Airflow. См. [Введение в Apache Airflow](https://www.astronomer.io/docs/learn/intro-to-airflow).
+- Основные концепции Airflow. См. [Введение в Apache Airflow](intro-to-airflow.md).
 - DAG в Airflow. См. [Введение в DAG Airflow](dags.md).
 
 ## Зачем нужен UI
