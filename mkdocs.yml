@@ -141,6 +141,7 @@ nav:
     - Operators (операторы): "07. airflow-core-concepts/operators.md"
     - Sensors (сенсоры): "07. airflow-core-concepts/sensors.md"
     - TaskFlow: "07. airflow-core-concepts/taskflow.md"
+    - CLI (краткий обзор): "07. airflow-core-concepts/cli-overview.md"
 
   - "08. Tutorial":
     - Оглавление: "08. airflow-tutorial/README.md"
@@ -149,6 +150,7 @@ nav:
     - Построение простого пайплайна: "08. airflow-tutorial/pipeline.md"
     - Object Storage (туториал): "08. airflow-tutorial/objectstorage.md"
     - HITL (Human-in-the-Loop): "08. airflow-tutorial/hitl.md"
+    - Лучшие практики: "08. airflow-tutorial/best-practices.md"
 
   - "09. Прочее":
     - Оглавление: "09. others/README.md"
@@ -194,6 +196,9 @@ nav:
       - Подавление (suppressions): "09. others/ty/suppression.md"
       - Система типов: "09. others/ty/type-system.md"
       - CLI справочник: "09. others/ty/reference-cli.md"
+    - Pendulum:
+      - Оглавление: "09. others/pendulum/README.md"
+      - Введение и документация: "09. others/pendulum/introduction.md"
     - Pydantic:
       - Оглавление Pydantic: "09. others/Pydantic/README.md"
       - Добро пожаловать в Pydantic: "09. others/Pydantic/welcome-to-pydantic.md"

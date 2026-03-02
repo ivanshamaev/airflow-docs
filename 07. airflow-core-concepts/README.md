@@ -23,6 +23,7 @@
 | [XComs](xcoms.md) | Обмен данными между задачами, xcom_push/xcom_pull, бэкенды XCom, Object Storage, кастомные бэкенды |
 | [Variables](variables.md) | Глобальное хранилище ключ–значение, Variable.get(), шаблоны, отличия от XCom |
 | [Params](params.md) | Runtime-параметры DAG и задач, JSON Schema, форма Trigger UI, секции, обязательные поля |
+| [CLI (краткий обзор)](cli-overview.md) | Выжимка по CLI и переменным окружения: группы команд, dags/tasks/db/variables/connections/backfill/config, таблицы аргументов, env vars |
 
 ---
 
