@@ -144,7 +144,7 @@ nav:
 
   - "08. Tutorial":
     - Оглавление: "08. airflow-tutorial/README.md"
-    - "Airflow 101: первый workflow": "08. airflow-tutorial/fundamentals.md"
+    - Airflow 101 первый workflow: "08. airflow-tutorial/fundamentals.md"
     - TaskFlow API (Pythonic DAG): "08. airflow-tutorial/taskflow.md"
     - Построение простого пайплайна: "08. airflow-tutorial/pipeline.md"
     - Object Storage (туториал): "08. airflow-tutorial/objectstorage.md"
