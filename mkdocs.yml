@@ -132,6 +132,24 @@ nav:
     - Режим Docker: "06. dbt/getting-started-docker.md"
     - Операторы Cosmos: "06. dbt/getting-started-operators.md"
 
+  - "07. Core Concepts":
+    - Оглавление: "07. airflow-core-concepts/README.md"
+    - Обзор архитектуры: "07. airflow-core-concepts/architecture-overview.md"
+    - DAG: "07. airflow-core-concepts/dags.md"
+    - Dag Run: "07. airflow-core-concepts/dag-run.md"
+    - Tasks (задачи): "07. airflow-core-concepts/tasks.md"
+    - Operators (операторы): "07. airflow-core-concepts/operators.md"
+    - Sensors (сенсоры): "07. airflow-core-concepts/sensors.md"
+    - TaskFlow: "07. airflow-core-concepts/taskflow.md"
+
+  - "08. Tutorial":
+    - Оглавление: "08. airflow-tutorial/README.md"
+    - Airflow 101: первый workflow: "08. airflow-tutorial/fundamentals.md"
+    - TaskFlow API (Pythonic DAG): "08. airflow-tutorial/taskflow.md"
+    - Построение простого пайплайна: "08. airflow-tutorial/pipeline.md"
+    - Object Storage (туториал): "08. airflow-tutorial/objectstorage.md"
+    - HITL (Human-in-the-Loop): "08. airflow-tutorial/hitl.md"
+
   - "09. Прочее":
     - Оглавление: "09. others/README.md"
     - Менеджер пакетов (uv):
