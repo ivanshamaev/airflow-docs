@@ -193,7 +193,6 @@ nav:
       - Правила: "09. others/ty/rules.md"
       - Подавление (suppressions): "09. others/ty/suppression.md"
       - Система типов: "09. others/ty/type-system.md"
-      - Справочник конфигурации: "09. others/ty/reference-configuration.md"
       - CLI справочник: "09. others/ty/reference-cli.md"
     - Pydantic:
       - Оглавление Pydantic: "09. others/Pydantic/README.md"

@@ -15,6 +15,5 @@
 - **[Правила](rules.md)** — уровни правил (`ignore` / `warn` / `error`), настройка через CLI и конфигурацию, установка уровня `all`.
 - **[Подавление (suppressions)](suppression.md)** — комментарии `# ty: ignore[...]`, `type: ignore`, несколько комментариев, `unused-ignore-comment`, декоратор `@no_type_check`.
 - **[Система типов ty](type-system.md)** — redeclarations, пересечения типов (`Intersection`), top/bottom‑materializations, анализ достижимости по типам, gradual guarantee, fixpoint iteration.
-- **[Справочник конфигурации](reference-configuration.md)** — детальное описание всех опций `rules`, `analysis`, `environment`, `overrides`, `src`, `terminal` в `pyproject.toml` и `ty.toml`.
 - **[CLI справочник](reference-cli.md)** — команды `ty` (`check`, `server`, `version`, `generate-shell-completion`, `help`), аргументы, опции и флаги.
 
