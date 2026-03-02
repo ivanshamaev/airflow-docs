@@ -52,6 +52,7 @@ nav:
 
   - "01. Basics":
     - Оглавление: "01. astronomer-basic/README.md"
+    - Введение в Airflow: "01. astronomer-basic/intro-to-airflow.md"
     - Интерфейс Airflow (UI): "01. astronomer-basic/airflow-ui.md"
     - Ассеты и data-aware: "01. astronomer-basic/assets.md"
     - BashOperator: "01. astronomer-basic/bashoperator.md"
