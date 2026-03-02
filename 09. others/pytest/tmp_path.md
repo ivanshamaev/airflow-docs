@@ -1,6 +1,6 @@
-# Как использовать временные каталоги и файлы в тестах¶
+# Как использовать временные каталоги и файлы в тестах
 
-## Фикстура tmp_path¶
+## Фикстура tmp_path
 
 Можно использовать фикстуру `tmp_path`, которая предоставляет временный каталог, уникальный для каждой тестовой функции.
 
@@ -57,7 +57,7 @@ FAILED test_tmp_path.py::test_create_file - assert 0
 
 По умолчанию `pytest` сохраняет временный каталог для последних 3 запусков `pytest`. Параллельные запуски одной и той же тестовой функции поддерживаются при настройке базового временного каталога так, чтобы он был уникален для каждого параллельного запуска. Подробнее см. temporary directory location and retention.
 
-## Фикстура tmp_path_factory¶
+## Фикстура tmp_path_factory
 
 `tmp_path_factory` — фикстура с областью `session`, которую можно использовать, чтобы создавать произвольные временные каталоги из других фикстур или тестов.
 
@@ -85,7 +85,7 @@ def test_histogram(image_file):
 
 Подробнее см. [tmp_path_factory API](https://docs.pytest.org/en/stable/reference/reference.html#tmp-path-factory-factory-api).
 
-## Фикстуры tmpdir и tmpdir_factory¶
+## Фикстуры tmpdir и tmpdir_factory
 
 Фикстуры `tmpdir` и `tmpdir_factory` похожи на `tmp_path` и `tmp_path_factory`, но используют/возвращают устаревшие объекты [py.path.local](https://py.readthedocs.io/en/latest/path.html), а не стандартные [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path).
 
@@ -104,7 +104,7 @@ pytest -p no:legacypath
 
 Подробнее см. API [tmpdir](https://docs.pytest.org/en/stable/reference/reference.html#std-fixture-tmpdir) и [tmpdir_factory](https://docs.pytest.org/en/stable/reference/reference.html#std-fixture-tmpdir_factory).
 
-## Расположение и хранение временных каталогов¶
+## Расположение и хранение временных каталогов
 
 Временные каталоги, возвращаемые фикстурами [tmp_path](https://docs.pytest.org/en/stable/reference/reference.html#std-fixture-tmp_path) и (теперь устаревшей) [tmpdir](https://docs.pytest.org/en/stable/reference/reference.html#std-fixture-tmpdir), автоматически создаются внутри базового временного каталога. Структура зависит от опции [--basetemp](https://docs.pytest.org/en/stable/reference/reference.html#cmdoption-basetemp):
 

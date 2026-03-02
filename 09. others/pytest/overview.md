@@ -1,10 +1,10 @@
-# pytest: помогает писать лучшие программы¶
+# pytest: помогает писать лучшие программы
 
 Фреймворк `pytest` упрощает написание небольших, читаемых тестов и может масштабироваться для поддержки сложного функционального тестирования приложений и библиотек.
 
 Имя пакета на PyPI: [pytest](https://pypi.org/project/pytest)
 
-## Быстрый пример¶
+## Быстрый пример
 
 ```
 # content of test_sample.py
@@ -45,7 +45,7 @@ FAILED test_sample.py::test_answer - assert 4 == 5
 
 Благодаря подробной интроспекции утверждений (assertion introspection) в `pytest` используются только обычные инструкции `assert`. Базовое введение в использование pytest см. в разделе [Get started](https://docs.pytest.org/en/stable/getting-started.html#getstarted).
 
-## Возможности¶
+## Возможности
 
 Подробная информация о падении [assert-выражений](https://docs.pytest.org/en/stable/how-to/assert.html#assert) (не нужно помнить имена `self.assert*`)
 
@@ -59,7 +59,7 @@ Python 3.10+ или PyPy 3
 
 Богатая архитектура плагинов: более 1300+ [внешних плагинов](https://docs.pytest.org/en/stable/reference/plugin_list.html#plugin-list) и активное сообщество
 
-## Документация¶
+## Документация
 
 [Get started](https://docs.pytest.org/en/stable/getting-started.html#get-started) — установить pytest и освоить основы всего за двадцать минут
 
@@ -69,11 +69,11 @@ Python 3.10+ или PyPy 3
 
 [Explanation](https://docs.pytest.org/en/stable/explanation/index.html#explanation) — фон, обсуждение ключевых тем, ответы на более «высокоуровневые» вопросы
 
-## Ошибки/запросы¶
+## Ошибки/запросы
 
 Пожалуйста, используйте [трекер задач GitHub](https://github.com/pytest-dev/pytest/issues), чтобы сообщать об ошибках или запрашивать возможности.
 
-## Поддержать pytest¶
+## Поддержать pytest
 
 [Open Collective](https://opencollective.com/) — онлайн-платформа финансирования для открытых и прозрачных сообществ. Она предоставляет инструменты для сбора средств и публикации финансов в формате полной прозрачности.
 
@@ -81,7 +81,7 @@ Python 3.10+ или PyPy 3
 
 Подробнее см. в [pytest collective](https://opencollective.com/pytest).
 
-## pytest для enterprise¶
+## pytest для enterprise
 
 Доступно в составе подписки Tidelift.
 
@@ -89,6 +89,6 @@ Python 3.10+ или PyPy 3
 
 [Узнать больше.](https://tidelift.com/subscription/pkg/pypi-pytest?utm_source=pypi-pytest&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
 
-### Безопасность¶
+### Безопасность
 
 pytest никогда не был связан с уязвимостями безопасности, но в любом случае, чтобы сообщить об уязвимости, используйте [контакт Tidelift по безопасности](https://tidelift.com/security). Tidelift скоординирует исправление и раскрытие информации.

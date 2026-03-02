@@ -1,4 +1,4 @@
-# Как использовать subtests¶
+# Как использовать subtests
 
 Добавлено в версии 9.0.
 
@@ -85,13 +85,13 @@ Note
 
 В качестве альтернативы subtests см. [How to parametrize fixtures and test functions](https://docs.pytest.org/en/stable/how-to/parametrize.html#parametrize).
 
-## Уровень подробности (verbosity)¶
+## Уровень подробности (verbosity)
 
 По умолчанию показываются только падения subtests. При более высоких уровнях подробности ([-v](https://docs.pytest.org/en/stable/reference/reference.html#cmdoption-v)) также будет показан прогресс выполнения успешно прошедших subtests.
 
 Можно управлять подробностью вывода subtests, задав [verbosity_subtests](https://docs.pytest.org/en/stable/reference/reference.html#confval-verbosity_subtests).
 
-## Типизация¶
+## Типизация
 
 [pytest.Subtests](https://docs.pytest.org/en/stable/reference/reference.html#pytest.Subtests) экспортируется, поэтому его можно использовать в аннотациях типов:
 
@@ -100,11 +100,11 @@ def test(subtests: pytest.Subtests) -> None: ...
 
 ```
 
-## Параметризация vs Subtests¶
+## Параметризация vs Subtests
 
 Хотя [традиционная параметризация pytest](https://docs.pytest.org/en/stable/how-to/parametrize.html#parametrize) и `subtests` похожи, у них есть важные различия и сценарии применения.
 
-### Параметризация¶
+### Параметризация
 
 Происходит во время collection.
 
@@ -116,7 +116,7 @@ def test(subtests: pytest.Subtests) -> None: ...
 
 Идеально для тестирования по таблицам решений (decision table testing).
 
-### Subtests¶
+### Subtests
 
 Происходят во время выполнения теста.
 
