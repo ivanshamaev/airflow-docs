@@ -141,6 +141,7 @@ nav:
     - Operators (операторы): "07. airflow-core-concepts/operators.md"
     - Sensors (сенсоры): "07. airflow-core-concepts/sensors.md"
     - TaskFlow: "07. airflow-core-concepts/taskflow.md"
+    - Справочник по шаблонам: "07. airflow-core-concepts/templates-reference.md"
     - CLI (краткий обзор): "07. airflow-core-concepts/cli-overview.md"
 
   - "08. Tutorial":

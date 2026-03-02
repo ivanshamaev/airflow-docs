@@ -15,6 +15,7 @@
 | [Operators (операторы)](operators.md) | Шаблоны задач, Jinja-шаблонизация, template_fields, literal(), render_template_as_native_obj, params, f-строки |
 | [Sensors (сенсоры)](sensors.md) | Ожидание условий, режимы poke и reschedule, BaseSensorOperator, параметры сенсоров |
 | [TaskFlow](taskflow.md) | Декоратор @task, XComArg, контекст, логирование, передача объектов, сериализация, сенсоры |
+| [Справочник по шаблонам](templates-reference.md) | Переменные шаблонов, var/conn, фильтры ds/ts, макросы, TaskFlow-контекст |
 | [Executor](executor.md) | Типы исполнителей, несколько исполнителей, BaseExecutor, написание своего исполнителя |
 | [Auth manager](auth-manager.md) | Аутентификация и авторизация, BaseAuthManager, JWT, методы авторизации, CLI, расширение API |
 | [Object Storage](objectstorage.md) | Абстракция объектных хранилищ (s3, gcs, Azure), Path API, fsspec, копирование, интеграции |
