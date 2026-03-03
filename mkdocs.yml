@@ -200,6 +200,12 @@ nav:
     - Pendulum:
       - Оглавление: "09. others/pendulum/README.md"
       - Введение и документация: "09. others/pendulum/introduction.md"
+    - Black:
+      - Оглавление: "09. others/Black/README.md"
+      - Туториал 101: "09. others/Black/tutorial_101.md"
+      - Стиль кода: "09. others/Black/code-style.md"
+      - Основы: "09. others/Black/the_basics.md"
+      - Внедрение в проект и другие инструменты: "09. others/Black/introducing_black_to_your_project.md"
     - Pydantic:
       - Оглавление Pydantic: "09. others/Pydantic/README.md"
       - Добро пожаловать в Pydantic: "09. others/Pydantic/welcome-to-pydantic.md"
