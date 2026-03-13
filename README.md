@@ -1,3 +1,6 @@
+# Built GitHub Pages
+[GitHub Page airflow-docs](https://ivanshamaev.github.io/airflow-docs/)
+
 # Airflow Docs (RU)
 
 Неофициальный русский перевод документации **Apache Airflow®** и [Astronomer Learn](https://www.astronomer.io/docs/learn/) в Markdown. Для личного использования и GitHub.
